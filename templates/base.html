@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.16/dist/css/uikit.min.css" />
 </head>
 <body>
-    
+        {% block slideshow%}
+        {% endblock %}
         <!-- Navbar -->
-<div class="uk-position-relative">
-    {% block slideshow%}
-
-    {% endblock %}
+    
+    {% block nav%}
     <div class="uk-position-top">
-        <nav class="uk-navbar-container uk-navbar-transparent uk-light" uk-navbar>
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <nav class="uk-navbar-container uk-navbar-light uk-dark" uk-navbar>
             <div class="uk-navbar-left uk-margin-small-left">
                 <ul class="uk-navbar-nav">
                     <a class="uk-navbar-item uk-logo" href="/">Shared Sights</a>
                         <li><a href="#">Explore</a></li>
-                        <li><a href="#">Share</a></li>
+                        <li><a href="/new-post">Share</a></li>
                 </ul>
             </div>
 
@@ -40,8 +40,7 @@
             </div>
         </nav>
     </div>
-</div>
-
+    {% endblock %}
 
 
 

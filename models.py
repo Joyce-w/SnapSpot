@@ -17,7 +17,7 @@ class User(db.Model):
 
     def __repr__(self):
         u=self
-        return f"<User id={u.id} name={u.name} species={u.species} hunger = {u.hunger}>"
+        return f"<User id={u.id}, name={u.name}, username={u.username}>"
 
     #define individual col in user table
     id = db.Column(db.Integer,
@@ -33,7 +33,29 @@ class User(db.Model):
     
     password = db.Column(db.String(30),
                     nullable=False)
+    
+    # references
+    posts = db.relationship('Post', backref='users')
 
 
+class Post(db.Model):
 
+    __tablename__ = "posts"
 
+    def __repr__(self):
+        p=self
+        return f"<Post id={p.id}, location={p.location}, image={p.image}, description={p.description}, user_id={p.user_id}>"
+   
+    id = db.Column(db.Integer,
+                    primary_key = True,
+                    autoincrement=True)
+
+    location = db.Column(db.String(30),
+                    nullable=False)
+    
+    image = db.Column(db.String())
+    
+    description = db.Column(db.String(200))
+
+    user_id = db.Column(db.Integer,
+                db.ForeignKey('users.id'))

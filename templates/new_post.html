@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="uk-position-relative">
+
+        <form action="">
+            {{ form.hidden_tag() }}
+            {% for field in form if field.widget.input_type != 'hidden' %}
+
+            <p>
+                {field.label}}
+                {{field}}
+            </p>
+
+            {% endfor %}
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template,  redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db
+from models import db, connect_db, User, Post
+from forms.new_post_form import NewPost
 
 
 # app created 
@@ -22,3 +23,11 @@ def homepage():
     """Show homepage"""
 
     return render_template('homepage.html')
+
+@app.route('/new-post')
+def new_post():
+    """Load form to share a location"""
+
+    form = NewPost()
+
+    return render_template('new_post.html', form=form)
