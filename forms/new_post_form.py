@@ -5,4 +5,5 @@ class NewPost(FlaskForm):
     """New form for adding location"""
 
     location = StringField("Location")
-    picture = StringField("Image URL") 
+    Image = StringField("Image URL") 
+    Description = StringField("Short Description")

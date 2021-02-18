@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.16/dist/css/uikit.min.css" />
 </head>
 <body>
-        {% block slideshow%}
-        {% endblock %}
-        <!-- Navbar -->
-    
+
+    {% block slideshow%}
+    <!-- slideshow for homepage -->
+    {% endblock %}
+
+
+    <!-- Navbar -->
     {% block nav%}
     <div class="uk-position-top">
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
@@ -45,7 +48,7 @@
 
 
     {% block content %}
-
+    <!-- all other content -->
     {% endblock %}
 
 
