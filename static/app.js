@@ -11,7 +11,15 @@ var map = new mapboxgl.Map({
     zoom: 8 // starting zoom
 });
 
-//Creates a geocoder
+// testing py data
+   function test_func(point) {
+        console.log(point);
+    }
+    test_func({{ point|safe }})
+    console.log(test_func({{ point|safe }}))
+
+
+//Creates a search with geocoding
 map.addControl(
     new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -20,12 +28,10 @@ map.addControl(
 
 );
 
+// adds marker at set location
 var marker = new mapboxgl.Marker()
-.setLngLat([-122.414, 37.776])
+    .setLngLat([-122.414, 37.776])
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<p>popup box </p>'))
     .addTo(map);
 
-new mapboxgl.Marker()
-.setLngLat([-122.414, 37.776])
-.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-.setHTML('<p>popup box </p>'))
-.addTo(map);

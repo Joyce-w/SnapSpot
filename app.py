@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json
 import requests
-import geocoder
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 from forms.new_post_form import NewPost
@@ -56,7 +55,7 @@ def new_post():
 def explore():
     """Load map with pinned locations"""
 
-    points = {"lat": 43.8934276, "lng": -103.3690243}
+    point = [43.8934276, -103.3690243]
     
 
-    return render_template('map.html')
+    return render_template('map.html', point=json.dumps(point))
