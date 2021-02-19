@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template,  redirect, flash, session
+from flask import Flask, request, render_template,  redirect, flash, session, json
 import requests
+import geocoder
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 from forms.new_post_form import NewPost
@@ -21,10 +22,10 @@ debug = DebugToolbarExtension(app)
 #call connect_db from models
 connect_db(app)
     
-@app.before_request
-def token():
-    """Set token to session"""
-    session[token]=MAPBOX_TOKEN
+# @app.before_request
+# def token():
+#     """Set token to session"""
+#     session['token']=MAPBOX_TOKEN
 
 
 
@@ -39,9 +40,8 @@ def new_post():
     """Load form to share a location"""
 
     form = NewPost()
-
+    
     # location =  requests.get(f"https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token={MAPBOX_TOKEN}")
-
     # print(location)
     # loc_json = location.json()
     # print(loc_json)
@@ -55,6 +55,8 @@ def new_post():
 @app.route('/explore')
 def explore():
     """Load map with pinned locations"""
-    print(MAPBOX_TOKEN)
-    token = MAPBOX_TOKEN
-    return render_template('map.html', token=token)
+
+    points = {"lat": 43.8934276, "lng": -103.3690243}
+    
+
+    return render_template('map.html')

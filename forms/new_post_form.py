@@ -4,6 +4,7 @@ from wtforms import StringField, FloatField
 class NewPost(FlaskForm):
     """New form for adding location"""
 
+    title = StringField("Post Title")
     location = StringField("Location")
-    Image = StringField("Image URL") 
-    Description = StringField("Short Description")
+    image = StringField("Image URL") 
+    description = StringField("Short Description")

@@ -12,23 +12,13 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
 <div id='map' style='width: 100vw; height: 90vh; margin-top: 5%;'>
-    <script>
-        mapboxgl.accessToken = accessToken;
-        var map = new mapboxgl.Map({
-            container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
-            center: [-118.1661, 33.9446], // starting position [lng, lat]
-            zoom: 10 // starting zoom
-        });
 
-        //sets a new marker
-        map.addControl(
-            new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl
-            })
-        );
-
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- app.js -->
+    <script type="text/javascript" src="/static/app.js">
+    
     </script>
 </div>
     {% endblock %}
