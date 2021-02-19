@@ -4,10 +4,12 @@
 {% block content %}
     <div class="uk-position-top-center uk-overlay uk-overlay-default">
         <form uk-grid>
+
             <fieldset class="uk-fieldset">
 
-                <legend class="uk-legend">New Post</legend>
-
+            <legend class="uk-legend"></legend>
+            <h1>New Post</h1>
+            
                 {{ form.hidden_tag() }}
                 {% for field in form if field.widget.input_type != 'hidden' %}
 

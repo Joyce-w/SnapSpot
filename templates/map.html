@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8" />
-    <title>Share Sights</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
-</head>
 
-<body>
+    {% block content %}
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js">
     </script>
     <link rel="stylesheet"
@@ -19,29 +11,25 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-<div id='map' style='width: 95vw; height: 95vh;'></div>
-<script>
-    mapboxgl.accessToken =
-        'SIGNUP TO MAPBOX FOR ACCES TOKEN';
-    var map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
-        center: [-118.1661, 33.9446], // starting position [lng, lat]
-        zoom: 10 // starting zoom
-    });
+<div id='map' style='width: 100vw; height: 90vh; margin-top: 5%;'>
+    <script>
+        mapboxgl.accessToken = accessToken;
+        var map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
+            center: [-118.1661, 33.9446], // starting position [lng, lat]
+            zoom: 10 // starting zoom
+        });
 
-    //sets a new market 
-    map.addControl(
-    new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl
-    })
-    );
+        //sets a new marker
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            })
+        );
 
+    </script>
+</div>
+    {% endblock %}
 
-
-</script>
-
-</body>
-
-</html>
