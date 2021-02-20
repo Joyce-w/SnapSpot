@@ -55,7 +55,7 @@ def new_post():
 def explore():
     """Load map with pinned locations"""
 
-    point = [43.8934276, -103.3690243]
+    point = [-118.1661, 33.9446]
     
 
-    return render_template('map.html', point=json.dumps(point))
+    return render_template('map.html', point=point)

@@ -29,12 +29,11 @@
         zoom: 8 // starting zoom
         });
 
+        
         // testing py data
-        function test_func(point) {
-        console.log(point);
-        }
-        test_func({{ point|safe }})
-        console.log(test_func({{ point|safe }}))
+        let test = {{ point }}
+        console.log(`this is the test: ${test}`)
+        console.log({{ point|safe }})
 
 
         //Creates a search with geocoding
@@ -48,7 +47,7 @@
 
         // adds marker at set location
         var marker = new mapboxgl.Marker()
-        .setLngLat([-122.414, 37.776])
+        .setLngLat(test)
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
         .setHTML('<p>popup box </p>'))
         .addTo(map);

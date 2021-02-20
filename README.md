@@ -6,3 +6,4 @@ Users are able to make post of sights and scenery they want to share. They are a
 APIs that will be potentially implemented in this project (subject to change).
 * [MapBox](https://docs.mapbox.com/help/how-mapbox-works/web-apps/)
 * [Weatherbox]( https://developer.accuweather.com/accuweather-locations-api/apis/)
+
