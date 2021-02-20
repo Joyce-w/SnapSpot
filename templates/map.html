@@ -19,22 +19,14 @@
 
 
     <script type="text/javascript"> 
-        mapboxgl.accessToken =
-        'pk.eyJ1Ijoiam95am95am95eSIsImEiOiJja2w4YzZyM3kxcTdmMnZwZXdiNG5yczRjIn0.CDJtfCb3X8TKcTBRMPBJFA';
-
+    
+        mapboxgl.accessToken = '{{token|safe}}'
         var map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
         center: [-118.1661, 33.9446], // starting position [lng, lat]
         zoom: 8 // starting zoom
         });
-
-        
-        // testing py data
-        let test = {{ point }}
-        console.log(`this is the test: ${test}`)
-        console.log({{ point|safe }})
-
 
         //Creates a search with geocoding
         map.addControl(
@@ -45,12 +37,25 @@
 
         );
 
-        // adds marker at set location
-        var marker = new mapboxgl.Marker()
-        .setLngLat(test)
-        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        .setHTML('<p>popup box </p>'))
-        .addTo(map);
+        // testing py data
+        let coordinates = {{ point }}
+
+
+        function get_markers(arr){
+            for(let coord of arr){
+            console.log(coord)
+
+            // adds marker at set location
+            var marker = new mapboxgl.Marker()
+            .setLngLat(coord)
+            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML('<p>text box </p>'))
+            .addTo(map);
+            }
+        }
+
+        get_markers(coordinates)
+
     </script>
 
 </div>

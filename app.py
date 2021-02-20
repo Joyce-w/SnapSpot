@@ -55,7 +55,11 @@ def new_post():
 def explore():
     """Load map with pinned locations"""
 
-    point = [-118.1661, 33.9446]
-    
+    token=MAPBOX_TOKEN
+    point = [
+            [-118.1661, 33.9446],
+            [-118.0, 32.9446],
+            [-117.1661, 33.0]
+    ]
 
-    return render_template('map.html', point=point)
+    return render_template('map.html',token=token , point=point)
