@@ -34,23 +34,6 @@ def homepage():
 
     return render_template('homepage.html')
 
-@app.route('/new-post')
-def new_post():
-    """Load form to share a location"""
-
-    form = NewPost()
-    
-    # location =  requests.get(f"https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token={MAPBOX_TOKEN}")
-    # print(location)
-    # loc_json = location.json()
-    # print(loc_json)
-    # test = loc_json['features'][0]
-
-    # test_loc = test["center"] 
-    # print(test_loc)
-    return render_template('new_post.html', form=form)
-
-
 @app.route('/explore')
 def explore():
     """Load map with pinned locations"""
@@ -63,3 +46,26 @@ def explore():
     ]
 
     return render_template('map.html',token=token , point=point)
+
+@app.route('/location-picker')
+def find_location():
+    """Find coordinates for post"""
+
+    return render_template('find_coord.html')
+
+@app.route('/new-post')
+def new_post():
+    """Find coordinates for post"""
+
+    form = NewPost()
+
+    # location =  requests.get(f"https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token={MAPBOX_TOKEN}")
+    # print(location)
+    # loc_json = location.json()
+    # print(loc_json)
+    # test = loc_json['features'][0]
+
+    # test_loc = test["center"] 
+    # print(test_loc)
+
+    return render_template('new_post.html', form=form)

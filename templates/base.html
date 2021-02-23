@@ -2,24 +2,20 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>{% block title%}Shared Sights {% endblock %}</title>
     <link rel="stylesheet" href="/static/app.css">
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.16/dist/css/uikit.min.css" />
 
     <!-- MapBox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        
 </head>
 <body>
 
-    {% block slideshow%}
+    {% block slideshow %}
     <!-- slideshow for homepage -->
     {% endblock %}
 
@@ -34,7 +30,7 @@
                 <ul class="uk-navbar-nav">
                     <a class="uk-navbar-item uk-logo" href="/">Shared Sights</a>
                         <li><a href="/explore">Explore</a></li>
-                        <li><a href="/new-post">Share</a></li>
+                        <li><a href="/location-picker">Share</a></li>
                 </ul>
             </div>
 
