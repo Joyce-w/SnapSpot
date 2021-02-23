@@ -18,7 +18,7 @@ var marker = new mapboxgl.Marker({
     })
     .setLngLat([0, 0])
     .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<button id="btn"><a href="/new-post">Share location</a></button'))
+    .setHTML('<button id="btn"><a>Share location</a></button'))
     .addTo(map);
 
 marker.on('dragend', onDragEnd);
@@ -35,9 +35,18 @@ function onDragEnd() {
 
 }
 
+// make sure DOM is ready 
+document.ready(function(){
+    button.on('click', function (e) {
+        alert("you clicked a button")
+    })
+    // Other event handlers.
+});
 
+//--- also tried this and it doesnt work-----
     // even listener for click button in marker
-button.on('click', function (lat,lng) {
+button.click(function(e) {
+    alert("you clicked")
     //send axios data to python
     
     
