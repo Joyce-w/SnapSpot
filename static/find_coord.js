@@ -1,5 +1,3 @@
-
-const button = document.getElementById('btn')
 let lng;
 let lat;
 
@@ -16,7 +14,7 @@ var map = new mapboxgl.Map({
 
 //make popup variable with button embedded
 let popup = new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<button id="btn">Share location</button')
+    .setHTML('<button class="btn">Current location</button>')
 
 //create blue marker and add to the map
 var marker = new mapboxgl.Marker({
@@ -37,12 +35,26 @@ function onDragEnd() {
     'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
     lng = lngLat.lng
     lat = lngLat.lat
-    console.log(lng, lat)
 
+    // display coordinates on form side
+    $('#lat').text(`Latitude: ${lat}`)
+    $('#lng').text(`Longitude: ${lng}`)
 }
 
-// even listener for click button in marker
-// does not work
-$('#btn').click(function(e) {
-    alert("you clicked")
+
+//wait for map to load
+map.on('load', function () {
+    //click event inside 
+    $('#map').on('click', '.btn', function() {
+        alert('test');
+    });
+
 })
+
+//store data into local session so it can be retrieved on /new-post page
+$('#formDiv').on('click', 'button', storeCoord(lat, lng))
+
+function storeCoord(lat, lng) {
+    localStorage.setItem("lat", lat)
+    localStorage.setItem("lng", lng)    
+}
