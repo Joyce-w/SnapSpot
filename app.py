@@ -58,14 +58,6 @@ def new_post():
     """Find coordinates for post"""
 
     form = NewPost()
-
-    # location =  requests.get(f"https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token={MAPBOX_TOKEN}")
-    # print(location)
-    # loc_json = location.json()
-    # print(loc_json)
-    # test = loc_json['features'][0]
-
-    # test_loc = test["center"] 
-    # print(test_loc)
+    
 
     return render_template('new_post.html', form=form)

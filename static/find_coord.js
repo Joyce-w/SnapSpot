@@ -1,6 +1,7 @@
 let lng;
 let lat;
 
+
 mapboxgl.accessToken =
     'pk.eyJ1Ijoiam95am95am95eSIsImEiOiJja2w4YzZyM3kxcTdmMnZwZXdiNG5yczRjIn0.CDJtfCb3X8TKcTBRMPBJFA';
 var coordinates = document.getElementById('coordinates');
@@ -39,22 +40,17 @@ function onDragEnd() {
     // display coordinates on form side
     $('#lat').text(`Latitude: ${lat}`)
     $('#lng').text(`Longitude: ${lng}`)
+
+    //store data into session
+    let data = { "lat": lat, "lng": lng }
+    sessionStorage.setItem("coords", JSON.stringify(data))
 }
 
-
-//wait for map to load
+//wait for map to load, before buttons can be clicked
+//not implemented in current view yet
 map.on('load', function () {
     //click event inside 
     $('#map').on('click', '.btn', function() {
         alert('test');
     });
-
 })
-
-//store data into local session so it can be retrieved on /new-post page
-$('#formDiv').on('click', 'button', storeCoord(lat, lng))
-
-function storeCoord(lat, lng) {
-    localStorage.setItem("lat", lat)
-    localStorage.setItem("lng", lng)    
-}
