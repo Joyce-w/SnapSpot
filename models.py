@@ -53,7 +53,7 @@ class Post(db.Model):
     title = db.Column(db.String(),
                     nullable=False)
 
-    location = db.Column(db.String(30),
+    location = db.Column(db.String(),
                     nullable=False)
     
     image = db.Column(db.String())

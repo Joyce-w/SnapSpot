@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json
 import requests
+import pdb;
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 from forms.new_post_form import NewPost
@@ -59,4 +60,23 @@ def new_post():
     """Find coordinates for post"""
 
     form = NewPost()
+
+    if form.validate_on_submit():
+        # make new model
+        
+        title = form.title.data
+        image = form.image.data
+        description = form.description.data
+        location = request.form['coords']
+        user=1
+
+
+        new_post = Post(title=title, image=image, description=description, location=location, user_id=user)
+        db.session.add(new_post)
+        db.session.commit()
+        print(new_post)
+        return redirect("/")
+    else:
+        return render_template('new_post.html', form=form)
+
     return render_template('new_post.html', form=form)

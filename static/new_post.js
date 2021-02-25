@@ -6,5 +6,5 @@ const data = JSON.parse(dataString)
 console.log(data)
 
 
-$('#coords').text(`[${data.lat}, ${data.lng}]`)
+$('#coords').val(`${data.lat}, ${data.lng}`)
 
