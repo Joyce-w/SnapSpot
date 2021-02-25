@@ -41,9 +41,17 @@ function onDragEnd() {
     $('#lat').text(`Latitude: ${lat}`)
     $('#lng').text(`Longitude: ${lng}`)
 
-    //store data into session
+    // //store data into session
     let data = { "lat": lat, "lng": lng }
     sessionStorage.setItem("coords", JSON.stringify(data))
+
+    //test cookies
+    setCookies(lat, lng)    
+
+    function setCookies(lat, lng) {
+    document.cookie = `lat=${lat}`
+    document.cookie = `lng=${lng}`    
+}
 }
 
 //wait for map to load, before buttons can be clicked
@@ -54,3 +62,4 @@ map.on('load', function () {
         alert('test');
     });
 })
+
