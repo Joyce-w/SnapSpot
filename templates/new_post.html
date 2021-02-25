@@ -10,6 +10,11 @@
             <legend class="uk-legend"></legend>
             <h1>New Post</h1>
             
+                <div class="uk-margin uk-width-1-1">
+                    Location (Based of the point you picked in the previous page)
+                    <p id="coords"></p>
+                </div>
+
                 {{ form.hidden_tag() }}
                 {% for field in form if field.widget.input_type != 'hidden' %}
 
@@ -26,6 +31,9 @@
         </form> 
     </div>
 
-
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="/static/new_post.js"></script>
 
 {% endblock %}

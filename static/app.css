@@ -28,13 +28,13 @@ body{
         display: none;
     }
 
-.container {
+.share_container {
     position: absolute;
     display: flex;
     justify-content: space-between;
 }
 
-form {
+#formDiv {
     width: 30vw;
     height: 100%;
     border: black solid 1px;

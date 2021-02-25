@@ -42,7 +42,8 @@ def explore():
     point = [
             [-118.1661, 33.9446],
             [-118.0, 32.9446],
-            [-117.1661, 33.0]
+            [-117.1661, 33.0],
+            [34.0730663, -118.10917329999998]
     ]
 
     return render_template('map.html',token=token , point=point)
@@ -53,11 +54,9 @@ def find_location():
 
     return render_template('find_coord.html')
 
-@app.route('/new-post')
+@app.route('/new-post', methods=["GET","POST"])
 def new_post():
     """Find coordinates for post"""
 
     form = NewPost()
-    
-
     return render_template('new_post.html', form=form)
