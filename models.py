@@ -55,6 +55,17 @@ class User(db.Model):
         db.session.add(user)
         return user
 
+    @classmethod
+    def authenticate(cls, username, password):
+        """Authenticate user when logging in"""
+
+        user = User.query.filter_by(username=username, password=password).first()
+        
+        if user and bcrypt.check_password_hash(user.password, password):
+            return user
+        else:
+            return False
+        
 
 class Post(db.Model):
 

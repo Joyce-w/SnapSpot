@@ -3,7 +3,7 @@ import requests
 import pdb
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
-from forms import UserSignup, NewPost
+from forms import UserSignup, UserLogin, NewPost
 from secrets import MAPBOX_TOKEN
 
 # app created 
@@ -50,6 +50,24 @@ def signup():
         return redirect("/")
 
     return render_template('/users/signup.html', form=form)
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    """Display login form"""
+
+    form = UserLogin()
+
+    if form.validate_on_submit():
+        # signup user with User classmethod
+        user = User.authenticate(username=form.username.data,
+                            password=form.password.data)
+
+        flash('Welcome back!')
+        return redirect("/")
+
+    return render_template('/users/login.html', form=form)
+
+
 
 @app.route('/explore')
 def explore():

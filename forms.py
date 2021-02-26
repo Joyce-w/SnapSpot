@@ -10,9 +10,13 @@ class UserSignup(FlaskForm):
     display_name = StringField('Display Name', validators=[DataRequired()])
     area = StringField('Area of Interest (zipcode, location, etc)', validators=[DataRequired()])
 
+class UserLogin(FlaskForm):
+    """Existing user login form"""
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+
 class NewPost(FlaskForm):
     """New form for adding location"""
-
     title = StringField("Post Title", validators=[DataRequired()])
     image = StringField("Image URL") 
     description = TextAreaField("Short Description", validators=[DataRequired()])
