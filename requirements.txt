@@ -1,12 +1,15 @@
+bcrypt==3.2.0
 blinker==1.4
 boto3==1.17.12
 botocore==1.20.12
 CacheControl==0.12.6
 certifi==2020.12.5
+cffi==1.14.5
 chardet==4.0.0
 click==7.1.2
 decorator==4.4.2
 Flask==1.1.2
+Flask-Bcrypt==0.7.1
 Flask-DebugToolbar==0.11.0
 Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
@@ -22,6 +25,7 @@ MarkupSafe==1.1.1
 msgpack==1.0.2
 polyline==1.4.0
 psycopg2-binary==2.8.6
+pycparser==2.20
 python-dateutil==2.8.1
 ratelim==0.1.6
 requests==2.25.1

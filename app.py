@@ -1,12 +1,10 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json
 import requests
-import pdb;
+import pdb
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
-from forms.new_post_form import NewPost
+from forms import UserSignup, NewPost
 from secrets import MAPBOX_TOKEN
-
-
 
 # app created 
 app = Flask(__name__)
@@ -34,6 +32,24 @@ def homepage():
     """Show homepage"""
 
     return render_template('homepage.html')
+
+# login and signup
+@app.route('/register', methods=["GET", "POST"])
+def signup():
+    """Display signup page"""
+
+    form = UserSignup()
+
+    if form.validate_on_submit():
+        # signup user with User classmethod
+        user = User.signup(display_name=form.display_name.data,
+                            username=form.username.data,
+                            password=form.password.data,
+                            area=form.area.data)
+        db.session.commit()
+        return redirect("/")
+
+    return render_template('/users/signup.html', form=form)
 
 @app.route('/explore')
 def explore():
