@@ -1,10 +1,12 @@
-from flask import Flask, request, render_template,  redirect, flash, session, json
+from flask import Flask, request, render_template,  redirect, flash, session, json, g
 import requests
 import pdb
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 from forms import UserSignup, UserLogin, NewPost
-from secrets import MAPBOX_TOKEN
+# from secrets import MAPBOX_TOKEN
+
+CURR_USER = "curr_user"
 
 # app created 
 app = Flask(__name__)
@@ -20,12 +22,11 @@ debug = DebugToolbarExtension(app)
 #call connect_db from models
 connect_db(app)
     
-# @app.before_request
-# def token():
-#     """Set token to session"""
-#     session['token']=MAPBOX_TOKEN
+@app.before_request
+def g_user():
+    """Set token"""
 
-
+    # session['token']=MAPBOX_TOKEN
 
 @app.route('/')
 def homepage():
@@ -33,7 +34,8 @@ def homepage():
 
     return render_template('homepage.html')
 
-# login and signup
+#----------------- login and signup ----------------#
+
 @app.route('/register', methods=["GET", "POST"])
 def signup():
     """Display signup page"""
@@ -54,13 +56,16 @@ def signup():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """Display login form"""
-
+    
     form = UserLogin()
 
     if form.validate_on_submit():
         # signup user with User classmethod
-        user = User.authenticate(username=form.username.data,
-                            password=form.password.data)
+        username = form.username.data
+        pwd = form.password.data
+
+        # authenticate the user
+        user = User.authenticate(username,pwd)
 
         flash('Welcome back!')
         return redirect("/")
@@ -105,7 +110,7 @@ def new_post():
         user=1
 
 
-        new_post = Post(title=title, image=image, description=description, location=location, user_id=user)
+        new_post = Post(title=title, image=image, description=description, location=location, user_id=1)
         db.session.add(new_post)
         db.session.commit()
         print(new_post)
@@ -114,3 +119,22 @@ def new_post():
         return render_template('new_post.html', form=form)
 
     return render_template('new_post.html', form=form)
+
+
+# --------User Routes -----------#
+
+@app.route('/users')
+def display_users():
+    """Display all users"""
+    
+    users = User.query.all()
+
+    return render_template('/users/all_users.html', users=users)
+
+@app.route('/users/<username>')
+def user_info(username):
+    """Display single user"""
+    
+    user = User.query.filter_by(username=username).first()
+
+    return render_template('/users/user.html', user=user)

@@ -39,3 +39,8 @@ body{
     height: 100%;
     border: black solid 1px;
 }
+
+img {
+    width: 250px;
+    border-radius: 3px;
+}

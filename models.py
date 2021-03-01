@@ -59,12 +59,12 @@ class User(db.Model):
     def authenticate(cls, username, password):
         """Authenticate user when logging in"""
 
+        pwd = bcrypt.generate_password_hash(password)
         user = User.query.filter_by(username=username, password=password).first()
         
-        if user and bcrypt.check_password_hash(user.password, password):
+        if bcrypt.check_password_hash(pwd, password):
             return user
-        else:
-            return False
+
         
 
 class Post(db.Model):
