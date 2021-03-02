@@ -94,6 +94,7 @@ def find_location():
 
     return render_template('find_coord.html')
 
+# ------------  Post routes  -----------
 @app.route('/new-post', methods=["GET","POST"])
 def new_post():
     """Find coordinates for post"""
@@ -109,16 +110,23 @@ def new_post():
         location = request.form['coords']
         user=1
 
-
         new_post = Post(title=title, image=image, description=description, location=location, user_id=1)
         db.session.add(new_post)
         db.session.commit()
         print(new_post)
-        return redirect("/")
+        return redirect("/") 
     else:
-        return render_template('new_post.html', form=form)
+        return render_template('/posts/new_post.html', form=form)
 
-    return render_template('new_post.html', form=form)
+    return render_template('/posts/new_post.html', form=form)
+
+@app.route('/post/<int:post_id>')
+def view_post(post_id):
+    """View a single post's details"""
+
+    post = Post.query.get(post_id)
+
+    return render_template('/posts/post_detail.html', post=post)
 
 
 # --------User Routes -----------#
@@ -128,13 +136,14 @@ def display_users():
     """Display all users"""
     
     users = User.query.all()
-
     return render_template('/users/all_users.html', users=users)
+
 
 @app.route('/users/<username>')
 def user_info(username):
     """Display single user"""
     
     user = User.query.filter_by(username=username).first()
-
     return render_template('/users/user.html', user=user)
+
+

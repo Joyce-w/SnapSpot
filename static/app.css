@@ -44,3 +44,14 @@ img {
     width: 250px;
     border-radius: 3px;
 }
+
+
+#postDetail{
+    display: flex;
+    justify-content: center;
+
+}
+
+#postDetail img{
+    width: 80vh;
+}

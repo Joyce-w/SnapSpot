@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+    {% block content %}
+
+        <article id="postDetail" class="uk-article uk-align-center ">
+            <div class="uk-align-center">
+
+                <img data-src="{{post.image}}" width="50%vw" uk-img>
+                <div class="uk-width-expand">
+                    <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset"
+                            href="/users/{{post.users.username}}">{{post.users.username}}</a>
+                    </h4>
+                </div>
+                <h1 class="uk-article-title">{{post.title}}</h1>
+
+                <p>{{ post.description }}</p>
+
+            </div>
+
+        </article>
+
+    {% endblock %}
