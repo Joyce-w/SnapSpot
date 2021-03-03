@@ -120,6 +120,7 @@ def new_post():
 
     return render_template('/posts/new_post.html', form=form)
 
+
 @app.route('/post/<int:post_id>')
 def view_post(post_id):
     """View a single post's details"""
@@ -128,6 +129,44 @@ def view_post(post_id):
 
     return render_template('/posts/post_detail.html', post=post)
 
+
+@app.route('/post/<int:post_id>/edit', methods=["GET"])
+def get_post(post_id):
+    """Allow owners to edit their post"""
+
+    post = Post.query.get(post_id)
+
+    return render_template('/posts/edit_form.html', post=post)
+
+
+@app.route('/post/<int:post_id>/edit', methods=["POST"])
+def edit_post(post_id):
+    """Allow owners to edit their post"""
+
+    post = Post.query.get(post_id)
+
+    new_title = request.form['new_title'] 
+    new_desc = request.form['new_desc']
+
+    # update infor in db
+    post.title = new_title
+    post.description = new_desc
+    db.session.commit()
+
+    return redirect("/users")
+
+
+@app.route('/post/<int:post_id>/delete')
+def del_post(post_id):
+    """Allow owners to delete their own post"""
+
+    post = Post.query.filter_by(id=post_id).delete()
+    db.session.commit()
+
+    # Flash message about deletion
+    flash("Post deleted.")
+    
+    return redirect("/users")
 
 # --------User Routes -----------#
 

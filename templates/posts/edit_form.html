@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+    {% block content %}
+
+
+        <article id="postDetail" class="uk-article uk-align-center ">
+            <div class="uk-align-center">
+
+                <h1 class="uk-article-title">Edit your post here!</h1>
+                <p>Only title and description can be edited. Please create new post for new picture.</p>
+
+                <img data-src="{{post.image}}" width="50%vw" uk-img>
+            </div>
+        </article>
+
+        <div id="editPost">
+            <form class="uk-width-2-3" uk-grid action="/post/{{post.id}}/edit" , method="POST">
+                <div class=" uk-width-1-1">
+                    <p>Title</p>
+                    <input class="uk-input" type="text" name="new_title" placeholder="{{post.title}}">
+                </div>
+                <div class=" uk-width-1-1">
+                    <p>Description</p>
+                    <textarea class="uk-textarea" rows="5" name="new_desc"
+                         placeholder="{{post.description}}"></textarea>
+                </div>
+                <div class=" uk-width-1-1">
+                    <button class="uk-button uk-button-primary">Subit Changes</button>                    
+                </div>
+
+            </form>            
+        </div>
+
+    {% endblock%}

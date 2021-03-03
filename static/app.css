@@ -45,7 +45,7 @@ img {
     border-radius: 3px;
 }
 
-
+/* posts selectors */
 #postDetail{
     display: flex;
     justify-content: center;
@@ -55,3 +55,10 @@ img {
 #postDetail img{
     width: 80vh;
 }
+
+#editPost{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5em;
+}
+

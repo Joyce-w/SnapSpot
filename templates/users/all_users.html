@@ -2,6 +2,17 @@
 
 
 {% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="uk-alert-danger" uk-alert>
+        <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
 <h1>User List!</h1>
     <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
         {% for user in users %}
