@@ -67,8 +67,14 @@ def login():
         # authenticate the user
         user = User.authenticate(username,pwd)
 
-        flash('Welcome back!')
-        return redirect("/")
+        if user:
+            flash('Welcome back!')
+            print("********")
+            print("Login successful")
+            return redirect("/")
+        else:
+            print("********")
+            print("Login failed")
 
     return render_template('/users/login.html', form=form)
 

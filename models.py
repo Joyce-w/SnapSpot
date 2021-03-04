@@ -39,7 +39,6 @@ class User(db.Model):
     
     # references
     posts = db.relationship('Post', backref='users')
-    u_tags = db.relationship('Tag', backref='tag')
 
 
     @classmethod
@@ -60,11 +59,13 @@ class User(db.Model):
     def authenticate(cls, username, password):
         """Authenticate user when logging in"""
 
-        pwd = bcrypt.generate_password_hash(password)
-        user = User.query.filter_by(username=username, password=password).first()
+
+        user = User.query.filter_by(username=username).first()
         
-        if bcrypt.check_password_hash(pwd, password):
+        if user and bcrypt.check_password_hash(user.password, password):
             return user
+        else:
+            return False
 
         
 
@@ -92,43 +93,3 @@ class Post(db.Model):
 
     user_id = db.Column(db.Integer,
                 db.ForeignKey('users.id'))
-    
-    p_tags = db.relationship('Tag', backref='posts', cascade="all, delete-orphan")
-
-class Tag(db.Model):
-    
-    __tablename__ = "tags"
-
-    def __repr__(self):
-        t=self
-        return f"<Tag id={t.id}, tag_name={t.tag_name}>"
-   
-    id = db.Column(db.Integer,
-                    primary_key = True,
-                    autoincrement=True)
-                    
-    tag_name = db.Column(db.String(15),
-                    nullable=True)
-                    
-class Post_Tag(db.Model):
-    
-    __tablename__ = "post_tags"
-
-    def __repr__(self):
-        pt=self
-        return f"<Tag id={pt.id}, tag_name={t.tag_name}>"
-   
-    id = db.Column(db.Integer,
-                    primary_key = True,
-                    autoincrement=True)
-                    
-    tag_id = db.Column(db.Integer(),
-                    db.ForeignKey('tags.id'),
-                    primary_key=True
-                    )
-
-    post_id = db.Column(db.Integer(),
-                    db.ForeignKey('posts.id'),
-                    primary_key=True
-                    )
-
