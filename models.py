@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_login import UserMixin
 # initalize SQLA 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -11,7 +12,7 @@ def connect_db(app):
     db.init_app(app)
 
 # MODELS GO BELOW
-class User(db.Model):
+class User(UserMixin, db.Model):
     #special dunder method to determine table name
     __tablename__ = "users"
 

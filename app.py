@@ -1,15 +1,19 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json, g
 import requests
 import pdb
+from flask_login import LoginManager
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 from forms import UserSignup, UserLogin, NewPost
 # from secrets import MAPBOX_TOKEN
 
+
 CURR_USER = "curr_user"
 
 # app created 
 app = Flask(__name__)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 # specify that youre using postgres and a specific database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///shsi_db'
