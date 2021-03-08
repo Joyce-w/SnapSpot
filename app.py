@@ -1,19 +1,18 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json, g
 import requests
 import pdb
-from flask_login import LoginManager
+from flask_login import LoginManager, UserMixin, login_user, login_required
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 from forms import UserSignup, UserLogin, NewPost
-# from secrets import MAPBOX_TOKEN
+from secrets import MAPBOX_TOKEN
 
 
 CURR_USER = "curr_user"
 
 # app created 
 app = Flask(__name__)
-login_manager = LoginManager()
-login_manager.init_app(app)
+
 
 # specify that youre using postgres and a specific database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///shsi_db'
@@ -25,18 +24,26 @@ debug = DebugToolbarExtension(app)
 
 #call connect_db from models
 connect_db(app)
-    
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 @app.before_request
 def g_user():
     """Set token"""
 
-    # session['token']=MAPBOX_TOKEN
+    session['token']=MAPBOX_TOKEN
 
 @app.route('/')
 def homepage():
     """Show homepage"""
 
     return render_template('homepage.html')
+
+# flask-login stuff
+# get user object
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
 #----------------- login and signup ----------------#
 
@@ -51,7 +58,9 @@ def signup():
         user = User.signup(display_name=form.display_name.data,
                             username=form.username.data,
                             password=form.password.data,
-                            area=form.area.data)
+                            area=form.area.data,
+                            caption=form.caption.data)
+
         db.session.commit()
         return redirect("/")
 
@@ -73,8 +82,7 @@ def login():
 
         if user:
             flash('Welcome back!')
-            print("********")
-            print("Login successful")
+            login_user(user)
             return redirect("/")
         else:
             print("********")
@@ -99,13 +107,15 @@ def explore():
     return render_template('map.html',token=token , point=point)
 
 @app.route('/location-picker')
+@login_required
 def find_location():
     """Find coordinates for post"""
 
     return render_template('find_coord.html')
 
 # ------------  Post routes  -----------
-@app.route('/new-post', methods=["GET","POST"])
+@app.route('/new-post', methods=["GET", "POST"])
+@login_required
 def new_post():
     """Find coordinates for post"""
 
@@ -132,6 +142,7 @@ def new_post():
 
 
 @app.route('/post/<int:post_id>')
+@login_required
 def view_post(post_id):
     """View a single post's details"""
 
@@ -141,6 +152,7 @@ def view_post(post_id):
 
 
 @app.route('/post/<int:post_id>/edit', methods=["GET"])
+@login_required
 def get_post(post_id):
     """Allow owners to edit their post"""
 
@@ -150,6 +162,7 @@ def get_post(post_id):
 
 
 @app.route('/post/<int:post_id>/edit', methods=["POST"])
+@login_required
 def edit_post(post_id):
     """Allow owners to edit their post"""
 
@@ -167,6 +180,7 @@ def edit_post(post_id):
 
 
 @app.route('/post/<int:post_id>/delete')
+@login_required
 def del_post(post_id):
     """Allow owners to delete their own post"""
 
