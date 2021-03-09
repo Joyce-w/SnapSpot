@@ -38,6 +38,10 @@
 
         <button class="uk-button uk-button-default">Make Changes</button>
     </form>
+    
+    <form action="/users/{{g.user.id}}/delete" method="POST">
+        <button class="uk-button uk-button-danger">Delete Account</button>
+    </form>
 
 
 {% endblock %}

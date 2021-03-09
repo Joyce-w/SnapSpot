@@ -248,3 +248,19 @@ def edit_user(user_id):
         flash("You do not have permission to make changes to this user!")
 
     return redirect('/users')
+
+@app.route('/users/<int:user_id>/delete', methods=["POST"])
+@login_required
+def delete_user(user_id):
+    """Delete user"""
+    user = User.query.get(user_id)
+
+    if user.id == session['_user_id']:    
+        db.session.delete(user)
+        db.session.commit()
+        logout_user()
+        return redirect("/register")
+
+    else:
+        flash('You do not have permission to delete this account', 'danger')
+        return redirect('/users')
