@@ -8,28 +8,25 @@
         {{ form.hidden_tag() }}
 
         <div class="uk-margin">
-            <label class="uk-form-label" for="form-stacked-text">{{form.username.label}}</label>
+            {{form.username.label}}
             <div class="uk-form-controls">
                 <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.username}}">
             </div>
         </div>
-
         <div class="uk-margin">
-            <label class="uk-form-label" for="form-stacked-text">{{form.display_name.label}}</label>
+            {{form.display_name.label}}
             <div class="uk-form-controls">
                 <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.display_name}}">
             </div>
         </div>
-
         <div class="uk-margin">
-            <label class="uk-form-label" for="form-stacked-text">{{form.area.label}}</label>
+            {{form.area.label}}
             <div class="uk-form-controls">
                 <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.area}}">
             </div>
         </div>
-
         <div class="uk-margin">
-            <label class="uk-form-label" for="form-stacked-text">{{form.caption.label}}</label>
+            {{form.caption.label}}
             <div class="uk-form-controls">
                 <textarea class="uk-textarea" rows="5" placeholder="{{form.caption}}"></textarea>
             </div>
@@ -42,6 +39,7 @@
     <form action="/users/{{g.user.id}}/delete" method="POST">
         <button class="uk-button uk-button-danger">Delete Account</button>
     </form>
+
 
 
 {% endblock %}

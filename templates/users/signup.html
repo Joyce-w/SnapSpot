@@ -6,21 +6,23 @@
 
 <div class="row justify-content-md-center">
     <div class="col-md-7 col-lg-5">
-        <h2 class="join-message">Register Here</h2>
+
         <form action="/register" id="user_form" method="POST" >
+            <h2 class="join-message">Register Here</h2>
+
             {{ form.hidden_tag() }}
             {% for field in form if field.widget.input_type != 'hidden' %}
-
             <p>
+                {{field.label}}<br>
+                {{ field( class_="uk-input uk-form-width-medium") }}
                 {% for error in field.errors %}
-                <span class="text-danger">{{ error }}</span>
+                <div class="uk-label uk-label-warning">{{ error }}</div>
                 {% endfor %}
-                {{ field(placeholder=field.label.text, class_="uk-input uk-form-width-medium") }}
             </p>
 
             {% endfor %}
 
-            <button>Sign up!</button>
+            <button class="uk-button-primary">Sign up!</button>
         </form>
     </div>
 </div>
