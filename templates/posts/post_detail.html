@@ -10,16 +10,21 @@
                             href="/users/{{post.users.username}}">{{post.users.username}}</a>
                     </h4>
                 </div>
-                <h1 class="uk-article-title">{{post.title}}</h1>
 
+          
+                <h1 class="uk-article-title">{{post.title}}</h1>
                 <p>{{ post.description }}</p>
-                <a class="uk-button uk-button-primary" href="/post/{{post.id}}/edit">Edit</a>
-                <span>
-                    
-                </span>
-                <form action="/post/{{post.id}}/delete">
-                    <button class="uk-button uk-button-danger">Delete Post</button>
-                </form>
+
+                {% if g.user.id == post.users.id %}
+                    <a class="uk-button uk-button-primary" href="/post/{{post.id}}/edit">Edit</a>
+                    <span>
+                        
+                    </span>
+                    <form action="/post/{{post.id}}/delete">
+                        <button class="uk-button uk-button-danger">Delete Post</button>
+                    </form>
+                {% endif %}
+
             </div>
 
         </article>

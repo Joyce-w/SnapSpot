@@ -142,13 +142,12 @@ def new_post():
         image = form.image.data
         description = form.description.data
         location = request.form['coords']
-        user=1
+        user=g.user.id
 
-        new_post = Post(title=title, image=image, description=description, location=location, user_id=1)
+        new_post = Post(title=title, image=image, description=description, location=location, user_id=user)
         db.session.add(new_post)
         db.session.commit()
-        print(new_post)
-        return redirect("/") 
+        return redirect(f"/users/{g.user.username}") 
     else:
         return render_template('/posts/new_post.html', form=form)
 
@@ -156,7 +155,6 @@ def new_post():
 
 
 @app.route('/post/<int:post_id>')
-@login_required
 def view_post(post_id):
     """View a single post's details"""
 
