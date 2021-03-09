@@ -40,7 +40,11 @@ class User(UserMixin, db.Model):
     
     caption = db.Column(db.Text(),
                     default='')
-    
+                    
+    def get_id(self):
+        """returns users id"""
+        return self.id
+
     # references
     posts = db.relationship('Post', backref='users')
 

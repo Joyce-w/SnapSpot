@@ -25,7 +25,7 @@
     <!-- slideshow for homepage -->
     {% endblock %}
 
-
+    
     <!-- Navbar -->
     {% block nav%}
     <div class="uk-position-top">
@@ -42,19 +42,24 @@
                 </ul>
             </div>
 
+        {% if g.user %}
+        
             <div class="uk-navbar-right uk-margin-medium-right">
                 <ul class="uk-navbar-nav">
                     <li>
                         <a href="#">My Account</a>
                         <div class="uk-navbar-dropdown ">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="#">My Posts</a></li>
-                                <li><a href="#">Edit User</a></li>
+                                <li><a href="/users/{{g.user.username}}">My Posts</a></li>
+                                <li><a href="/users/{{g.user.id}}/edit">Edit User</a></li>
+                                <li><a href="/logout">Logout</a></li>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </div>
+        {% endif%}
+
         </nav>
     </div>
     {% endblock %}

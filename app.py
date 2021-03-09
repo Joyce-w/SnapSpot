@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json, g
 import requests
 import pdb
-from flask_login import LoginManager, UserMixin, login_user, login_required
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 from forms import UserSignup, UserLogin, NewPost
@@ -31,7 +31,14 @@ login_manager.init_app(app)
 def g_user():
     """Set token"""
 
-    session['token']=MAPBOX_TOKEN
+    session['token'] = MAPBOX_TOKEN
+    
+    if '_user_id' in session:
+        g.user = User.query.get(session['_user_id'])
+
+    else:
+        g.user = None
+    
 
 @app.route('/')
 def homepage():
@@ -89,6 +96,13 @@ def login():
             print("Login failed")
 
     return render_template('/users/login.html', form=form)
+
+@app.route('/logout')
+@login_required
+def logout():
+    """logout current user"""
+    logout_user()
+    return redirect('/')
 
 
 
@@ -209,4 +223,9 @@ def user_info(username):
     user = User.query.filter_by(username=username).first()
     return render_template('/users/user.html', user=user)
 
+@app.route('/users/<int:user_id>/edit')
+def edit_user(user_id):
+    """Display form to edit user"""
+    user = User.query.get(user_id)
 
+    return render_template('/users/edit_user.html', user=user)
