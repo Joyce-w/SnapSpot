@@ -2,26 +2,37 @@
 
 {% block content %}
 
-
-<!-- DISPLAY PICS OF USERS POSTINGS -->
-<article class="uk-article">
-
-    <h1 class="uk-article-title">{{user.username}} ({{user.display_name}})</h1>
-
-    <p class="uk-text-lead">This user takes pics of things and blah blah </p>
-
-    <!-- card sample -->
-    <div class=" uk-child-width-1-4@l uk-child-width-1-2@m uk-grid-match" uk-grid>
-            {% for post in user.posts %}    
-            <div class="uk-card uk-card-hover uk-card-body uk-margin-auto">
-
-                <img src="{{post.image}}">
-                <a class="uk-button uk-button-text" href="/post/{{post.id}}">Read more</a>
-
-            </div>
-            {% endfor %}
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, msg in messages %}
+    <div class="uk-alert-{{category}}" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p>{{msg}}</p>
     </div>
-</article>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- DISPLAY PICS OF USERS POSTINGS -->
+    <article class="uk-article">
+
+        <h1 class="uk-article-title">{{user.username}} ({{user.display_name}})</h1>
+
+        <p class="uk-text-lead">This user takes pics of things and blah blah </p>
+
+        <!-- card sample -->
+        <div class=" uk-child-width-1-4@l uk-child-width-1-2@m uk-grid-match" uk-grid>
+                {% for post in user.posts %}    
+                <div class="uk-card uk-card-hover uk-card-body uk-margin-auto">
+
+                    <img src="{{post.image}}">
+                    <a class="uk-button uk-button-text" href="/post/{{post.id}}">Read more</a>
+
+                </div>
+                {% endfor %}
+        </div>
+    </article>
 {% endblock %}
 
 

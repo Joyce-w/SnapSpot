@@ -2,6 +2,42 @@
 
 {% block content %}
 
+
     <h1>Edit User route</h1>
+    <form action="/users/{{g.user.id}}/edit" method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">{{form.username.label}}</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.username}}">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">{{form.display_name.label}}</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.display_name}}">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">{{form.area.label}}</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.area}}">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">{{form.caption.label}}</label>
+            <div class="uk-form-controls">
+                <textarea class="uk-textarea" rows="5" placeholder="{{form.caption}}"></textarea>
+            </div>
+        </div>
+
+
+        <button class="uk-button uk-button-default">Make Changes</button>
+    </form>
+
 
 {% endblock %}

@@ -223,9 +223,28 @@ def user_info(username):
     user = User.query.filter_by(username=username).first()
     return render_template('/users/user.html', user=user)
 
-@app.route('/users/<int:user_id>/edit')
+@app.route('/users/<int:user_id>/edit', methods=["GET", "POST"])
+@login_required
 def edit_user(user_id):
     """Display form to edit user"""
     user = User.query.get(user_id)
 
-    return render_template('/users/edit_user.html', user=user)
+    if user.id == session['_user_id']:
+        # display user edit form
+        form = UserSignup(obj=user)
+
+        if form.validate_on_submit():
+            user.username = form.username.data
+            user.display_name = form.display_name.data
+            user.area = form.area.data
+            user.caption = form.caption.data
+            db.session.commit()
+            flash('User information updated!', 'success')
+            return redirect(f"/users/{user.username}")
+
+        return render_template('/users/edit_user.html', user=user, form=form)
+
+    else:
+        flash("You do not have permission to make changes to this user!")
+
+    return redirect('/users')
