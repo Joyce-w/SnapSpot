@@ -20,14 +20,10 @@
     {% endfor %}        
     </div>
 
-
-    {% block slideshow %}
-    <!-- slideshow for homepage -->
-    {% endblock %}
-
     
     <!-- Navbar -->
     {% block nav%}
+    <!-- General nav -->
     <div class="uk-position-top">
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
         <nav class="uk-navbar-container uk-navbar-light uk-dark" uk-navbar>
@@ -35,15 +31,16 @@
                 <ul class="uk-navbar-nav">
                     <a class="uk-navbar-item uk-logo" href="/">Shared Sights</a>
                         <li><a href="/explore">Explore</a></li>
-                        <li><a href="/location-picker">Share</a></li>
                         <li><a href="/users">Users</a></li>
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
+                        {% if g.user %}
+                            <!-- show sharing option if logged in -->
+                            <li><a href="/location-picker">Share</a></li>
+                        {% endif %}
                 </ul>
             </div>
 
         {% if g.user %}
-        
+            <!-- display user options if loggedin -->
             <div class="uk-navbar-right uk-margin-medium-right">
                 <ul class="uk-navbar-nav">
                     <li>
@@ -58,10 +55,30 @@
                     </li>
                 </ul>
             </div>
+        {% else %} 
+            <!-- display login/register option if not signed in -->
+            <div class="uk-navbar-right uk-margin-medium-right">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a>Get Started </a>
+                        <div class="uk-navbar-dropdown ">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="/register">Register</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         {% endif%}
 
         </nav>
     </div>
+    {% endblock %}
+
+
+    {% block slideshow %}
+    <!-- slideshow for homepage -->
     {% endblock %}
 
 

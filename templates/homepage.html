@@ -3,40 +3,62 @@
 
 
     {% block slideshow%}
-    
-    <div class="uk-position-relative uk-visible-toggle" tabindex="-1"
-        uk-slideshow="ratio: false; autoplay: true">
-        <ul class="uk-slideshow-items" uk-height-viewport="offset-top: true;">
+<div>
+        <div uk-slider="autoplay: true; autoplay-interval: 4000">
+        <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-4@ uk-grid-match">
             <li>
-                <img src="https://images.unsplash.com/photo-1414390579679-7d6cc7b20436?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1999&q=80"
-                    alt="Fertile mountain valley" uk-cover>
-                    <div class="uk-overlay uk-light uk-position-bottom">
-                        <p>Fertile mountain valley</p>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1414390579679-7d6cc7b20436?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1999&q=80"
+                        alt="">                
             </li>
+
             <li>
                 <img src="https://images.unsplash.com/photo-1515784638688-3f7e90ebb446?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80"
-                    alt="Brussels, Belgium" uk-cover>
-                    <div class="uk-overlay uk-light uk-position-bottom">
-                        <p>Brussels, Belgium</p>
-                    </div>
+                    alt="">
             </li>
+
             <li>
                 <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                    alt="Fushimi inari Trail, Kyōto-shi, Japan" uk-cover>
-                    <div class="uk-overlay uk-light uk-position-bottom">
-                        <p>Fushimi inari Trail, Kyōto-shi, Japan</p>
-                    </div>
+                    alt="">
             </li>
+
+            <li>
+                <img src="https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                    alt="">
+            </li>
+
+            <li>
+                <img src="https://images.unsplash.com/photo-1555990794-6d00be0d6f95?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80"
+                    alt="">
+            </li>
+            
         </ul>
 
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
-            uk-slideshow-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
-            uk-slideshow-item="next"></a>
+        <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+    </div>
 
+    <!-- recent blogs -->
+    <div class="uk-section uk-section-default">
+        <div class="uk-container">
+
+            <h1>Recent posts!</h1>
+
+            <div class="uk-grid-large uk-child-width-1-3@s uk-child-width-1-3@m" uk-grid>
+                {% for p in post %}
+            <div class="uk-text-center">
+                <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
+                    <img src="{{p.image}}" alt="">
+                    <div
+                        class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
+                        <p class="uk-h4 uk-margin-remove">{{p.title}}</p>
+                    </div>
+                </div>
+            </div>
+                {% endfor %}
+            </div>
+
+        </div>
     </div>
-    </div>
+</div>
 
 
 {% endblock %}

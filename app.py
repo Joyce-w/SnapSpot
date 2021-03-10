@@ -44,7 +44,9 @@ def g_user():
 def homepage():
     """Show homepage"""
 
-    return render_template('homepage.html')
+    post = Post.query.limit(4).all()
+
+    return render_template('homepage.html',post=post)
 
 # flask-login stuff
 # get user object
