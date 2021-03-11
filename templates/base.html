@@ -44,12 +44,12 @@
             <div class="uk-navbar-right uk-margin-medium-right">
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a href="#">My Account</a>
+                        <a href="#">Hello {{g.user.display_name}}!</a>
                         <div class="uk-navbar-dropdown ">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="/users/{{g.user.username}}">My Posts</a></li>
-                                <li><a href="/users/{{g.user.id}}/edit">Edit User</a></li>
-                                <li><a href="/logout">Logout</a></li>
+                                <li><a href="/users/{{g.user.username}}"><span uk-icon="thumbnails"></span> My Posts</a></li>
+                                <li><a href="/users/{{g.user.id}}/edit"><span uk-icon="file-edit"></span> Edit User</a></li>
+                                <li><a href="/logout"><span uk-icon="close"></span>Logout</a></li>
                             </ul>
                         </div>
                     </li>
@@ -60,11 +60,11 @@
             <div class="uk-navbar-right uk-margin-medium-right">
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a>Get Started </a>
+                        <a class="uk-text-bold">Get Started </a>
                         <div class="uk-navbar-dropdown ">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="/login">Login</a></li>
-                                <li><a href="/register">Register</a></li>
+                                <li><a href="/login"><span uk-icon="user"></span> Login</a></li>
+                                <li><a href="/register"><span uk-icon="plus-circle"></span> Register</a></li>
                             </ul>
                         </div>
                     </li>

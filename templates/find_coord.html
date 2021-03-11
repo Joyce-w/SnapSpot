@@ -1,30 +1,37 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <title>Pick a place to share</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
-
-    <!-- css for map positions, body, coordiante, map -->
-    <link rel="stylesheet" href="/static/app.css">
-</head>
-
+{% block content %}
 <body>
     <!-- Mapbox -->
     <div class="share_container">
 
         <!-- map canvas -->
-        <div id="map"></div>
+        <div id="map" style="height: 91.7vh"></div>
         <pre id="coordinates" class="coordinates"></pre>
+
         <!-- form sheet -->
         <div id="formDiv">
+            <div class="coord_dir">
+                <h4 class="uk-text-emphasis">Directions: </h4>
+                <ul class="uk-list uk-list-disc">
+                    <li>Drag the 
+                    <span uk-icon="location" class="uk-text-primary"></span> in the middle of the map
+                    to an approximate location.
+                    </li>
+                    <li>
+                        When you are satisfied with the coordinates, click <span class="uk-text-primary">'Share Location'</span> .
+                    </li>
+                    <li>
+                        The coordinates you picked will be sent to a form where you can talk more about your location!
+                    </li>
+                </ul>
+            </div>
+
             <form action="/new-post">
+                <h4 class="uk-text-emphasis">Coordinates: </h4>
                 <p id="lat">Latitude:</p>
                 <p id="lng">Longitude:</p>
-                <button class="s_btn">Share location</button>
+                <button class="uk-button uk-button-default uk-text-primary">Share location</button>
             </form>
 
 
@@ -40,4 +47,4 @@
 </body>
 
 
-</html>
+{% endblock %}

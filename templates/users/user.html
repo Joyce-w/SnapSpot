@@ -21,6 +21,11 @@
 
         <p class="uk-text-lead">{{user.caption}} </p>
 
+        <div class="user_btns">
+            <a class="uk-button uk-button-default" href="/location-picker">Make a post</a>
+            <a class="uk-button uk-button-default" href="/user/{{user.id}}/edit">Edit Account</a>
+        </div>
+
         <!-- card sample -->
         <div class=" uk-child-width-1-4@l uk-child-width-1-2@m uk-grid-match" uk-grid>
                 {% for post in user.posts %}    

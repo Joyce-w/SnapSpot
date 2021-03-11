@@ -112,12 +112,12 @@ def logout():
 def explore():
     """Load map with pinned locations"""
 
-    token=MAPBOX_TOKEN
+    token = MAPBOX_TOKEN
+    
     point = [
             [-118.1661, 33.9446],
             [-118.0, 32.9446],
-            [-117.1661, 33.0],
-            [34.0730663, -118.10917329999998]
+            [-51.1661, -71.0]
     ]
 
     return render_template('map.html',token=token , point=point)

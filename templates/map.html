@@ -12,53 +12,56 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-<div id='map' style='width: 100vw; height: 90vh; margin-top: 5%;'>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <!-- map div for mapBox -->
+        <div id='mapDiv'>
+            <div id='map' style=' width: 100vw; height: 91.7vh;'>
 
+                <!-- jQuery -->
+                <script src="https://code.jquery.com/jquery-3.5.1.js"
+                    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-    <script type="text/javascript"> 
-    
-        mapboxgl.accessToken = '{{token|safe}}'
-        var map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
-        center: [-118.1661, 33.9446], // starting position [lng, lat]
-        zoom: 8 // starting zoom
-        });
+                <script type="text/javascript"> 
+                
+                    mapboxgl.accessToken = '{{token|safe}}'
+                    var map = new mapboxgl.Map({
+                    container: 'map', // container ID
+                    style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
+                    center: [-118.1661, 33.9446], // starting position [lng, lat]
+                    zoom: 8 // starting zoom
+                    });
 
-        //Creates a search with geocoding
-        map.addControl(
-        new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-        })
+                    //Creates a search with geocoding
+                    map.addControl(
+                    new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken,
+                    mapboxgl: mapboxgl
+                    })
 
-        );
+                    );
 
-        // testing py data
-        let coordinates = {{ point }}
+                    // testing py data
+                    let coordinates = {{ point }}
 
+                    console.log(coordinates)
+                    function get_markers(arr){
+                        for(let coord of arr){
+                        console.log(coord)
 
-        function get_markers(arr){
-            for(let coord of arr){
-            console.log(coord)
+                        // adds marker at set location
+                        var marker = new mapboxgl.Marker()
+                        .setLngLat(coord)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                        .setHTML('<button><a>Post Info</a></button>'))
+                        .addTo(map);
+                        }
+                    }
 
-            // adds marker at set location
-            var marker = new mapboxgl.Marker()
-            .setLngLat(coord)
-            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML('<button><a>Post Info</a></button>'))
-            .addTo(map);
-            }
-        }
+                    get_markers(coordinates)
 
-        get_markers(coordinates)
+                </script>
+            </div>            
+        </div>
 
-    </script>
-
-</div>
     {% endblock %}
 

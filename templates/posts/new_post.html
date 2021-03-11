@@ -10,12 +10,13 @@
 
             {{ form.hidden_tag() }}
             {% for field in form if field.widget.input_type != 'hidden' %}
-                <p>
-                    {{field.label}}
-                </p>
-                <p>
-                    {{field (class_="uk-input uk-form-width-medium")}}
-                </p>
+                    <p>
+                        {{field.label}}
+                    </p>
+                    <p>
+                        {{field (class_="uk-input uk-form-width-medium")}}
+                    </p>
+
 
             {% endfor%}
             <button>submit</button>
