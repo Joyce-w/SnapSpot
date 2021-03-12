@@ -5,7 +5,14 @@
             <h1>New Post</h1>
             Location (Based of the marker from the previous page)
             <p>
-                <input id="coords" class="uk-input uk-form-width-large" name="coords" type="text" readonly="readonly">
+                <span>Latitude:</span>
+                <input id="coord_lat" class="uk-input uk-form-width-medium" name="coord_lat" type="number"
+                    readonly="readonly">
+                <span>
+                    <span>Longitude:</span>
+                    <input id="coord_lng" class="uk-input uk-form-width-medium" name="coord_lng" type="number"
+                        readonly="readonly">
+                </span>
             </p>
 
             {{ form.hidden_tag() }}
@@ -19,7 +26,7 @@
 
 
             {% endfor%}
-            <button>submit</button>
+            <button class="uk-button uk-button-primary">Share!</button>
         </form>
         
         <!-- jQuery -->

@@ -87,8 +87,8 @@ def login():
         pwd = form.password.data
 
         # authenticate the user
-        user = User.authenticate(username,pwd)
-
+        user = User.authenticate(username, pwd)
+        
         if user:
             flash('Welcome back!')
             login_user(user)
@@ -96,6 +96,8 @@ def login():
         else:
             print("********")
             print("Login failed")
+
+
 
     return render_template('/users/login.html', form=form)
 
@@ -145,10 +147,12 @@ def new_post():
         title = form.title.data
         image = form.image.data
         description = form.description.data
-        location = request.form['coords']
 
-        #return coordinates [lng, lat] format for db storage
-        pdb.set_trace()
+        #return coordinates [lng, lat] format for db storage 
+        lat = float(request.form['coord_lat'])
+        lng = float(request.form['coord_lng'])
+        location = [lng, lat]
+        
         user=g.user.id
 
         new_post = Post(title=title, image=image, description=description, location=location, user_id=user)

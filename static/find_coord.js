@@ -40,8 +40,8 @@ function onDragEnd() {
     $('#lng').text(`Longitude: ${lng}`)
 
     // //store data into session
-    let data = { "lat": lat, "lng": lng }
-    sessionStorage.setItem("coords", JSON.stringify(data))
+    sessionStorage.setItem("coord_lat", JSON.stringify({ "lat": lat }))
+    sessionStorage.setItem("coord_lng", JSON.stringify({"lng": lng }))
 }
 
 //wait for map to load, before buttons can be clicked
