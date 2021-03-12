@@ -4,27 +4,41 @@
 
 
 
-<div class="row justify-content-md-center">
-    <div class="col-md-7 col-lg-5">
 
-        <form action="/register" id="user_form" method="POST" >
-            <h2 class="join-message">Register Here</h2>
+<div class="main_forms uk-container uk-container-small">
+    <div class="row justify-content-md-center">
+        <div class="col-md-7 col-lg-1-1">
+            <h2 class="join-message">Register!</h2>
+                <form action="/login" id="user_form" method="POST">
+                    {{ form.hidden_tag() }}
+                    {% for field in form if field.widget.input_type != 'hidden' %}
 
-            {{ form.hidden_tag() }}
-            {% for field in form if field.widget.input_type != 'hidden' %}
-            <p>
-                {{field.label}}<br>
-                {{ field( class_="uk-input uk-form-width-medium") }}
-                {% for error in field.errors %}
-                <div class="uk-label uk-label-warning">{{ error }}</div>
-                {% endfor %}
-            </p>
+                    <p>
 
-            {% endfor %}
+                        
+                        {% if field.label.text == 'Short caption'%}
+                        <p>{{field.label.text}}</p>
+                        {{ field(class_="uk-textarea uk-form-width-large") }}
 
-            <button class="uk-button-primary">Sign up!</button>
-        </form>
+                        {% else %}
+                        
+                        {% for error in field.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                        <p>{{field.label.text}}</p>
+                        {{ field(class_="uk-input uk-form-width-large") }}
+
+                        {% endif %}
+
+                    </p>
+
+                    {% endfor %}
+
+                    <button class="uk-button uk-button-primary">Sign-Up</button>
+                </form>
+        </div>
     </div>
 </div>
+
 
 {% endblock %}

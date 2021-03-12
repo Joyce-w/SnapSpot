@@ -117,7 +117,9 @@ def explore():
     point = [
             [-118.1661, 33.9446],
             [-118.0, 32.9446],
-            [-51.1661, -71.0]
+            [-51.1661, -71.0],
+            [21.1661, -61.0],
+            [274.227889, -5.2264]
     ]
 
     return render_template('map.html',token=token , point=point)

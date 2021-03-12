@@ -2,44 +2,45 @@
 
 {% block content %}
 
+<div class="main_forms uk-container uk-container-small">
+    <div class="row justify-content-md-center">
+        <h1>Edit User route</h1>
+        <form action="/users/{{g.user.id}}/edit" method="POST">
+            {{ form.hidden_tag() }}
 
-    <h1>Edit User route</h1>
-    <form action="/users/{{g.user.id}}/edit" method="POST">
-        {{ form.hidden_tag() }}
-
-        <div class="uk-margin">
-            {{form.username.label}}
-            <div class="uk-form-controls">
-                <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.username}}">
+            <div class="uk-margin">
+                {{form.username.label}}
+                <div class="uk-form-controls">
+                    {{form.username (class_="uk-input uk-form-width-medium")}}
+                </div>
             </div>
-        </div>
-        <div class="uk-margin">
-            {{form.display_name.label}}
-            <div class="uk-form-controls">
-                <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.display_name}}">
+            <div class="uk-margin">
+                {{form.display_name.label}}
+                <div class="uk-form-controls">
+                    {{form.display_name (class_="uk-input uk-form-width-medium")}}
+                </div>
             </div>
-        </div>
-        <div class="uk-margin">
-            {{form.area.label}}
-            <div class="uk-form-controls">
-                <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{form.area}}">
+            <div class="uk-margin">
+                {{form.area.label}}
+                <div class="uk-form-controls">
+                    {{form.area (class_="uk-input uk-form-width-medium")}}
+                </div>
             </div>
-        </div>
-        <div class="uk-margin">
-            {{form.caption.label}}
-            <div class="uk-form-controls">
-                <textarea class="uk-textarea" rows="5" placeholder="{{form.caption}}"></textarea>
+            <div class="uk-margin">
+                {{form.caption.label}} 
+                <div class="uk-form-controls">
+                    {{form.caption (class_="uk-textarea uk-form-width-large")}}
+                </div>
             </div>
-        </div>
 
 
-        <button class="uk-button uk-button-default">Make Changes</button>
-    </form>
-    
-    <form action="/users/{{g.user.id}}/delete" method="POST">
-        <button class="uk-button uk-button-danger">Delete Account</button>
-    </form>
-
-
+            <button class="uk-button uk-button-default">Make Changes</button>
+        </form>
+        
+        <form action="/users/{{g.user.id}}/delete" method="POST">
+            <button class="uk-button uk-button-danger">Delete Account</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

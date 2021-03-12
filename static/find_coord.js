@@ -9,7 +9,8 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [0, 0],
-    zoom: 2
+    zoom: 2,
+    maxZoom: 1.42,
 });
 
 //make popup variable with button embedded

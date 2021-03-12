@@ -12,26 +12,36 @@
     </div>
     {% endfor %}
 
+<div class="main_forms uk-container uk-container-small">
+    <div class="row justify-content-md-center">
+        <div class="col-md-7 col-lg-1-1">
+            <h2 class="join-message">Sign-In Here!</h2>
+            <form action="/login" id="user_form" method="POST">
+                {{ form.hidden_tag() }}
+                {% for field in form if field.widget.input_type != 'hidden' %}
 
-<div class="row justify-content-md-center">
-    <div class="col-md-7 col-lg-5">
-        <h2 class="join-message">Login Here!</h2>
-        <form action="/login" id="user_form" method="POST">
-            {{ form.hidden_tag() }}
-            {% for field in form if field.widget.input_type != 'hidden' %}
+                <p>
+                    {% for error in field.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                    <p>{{field.label.text}}</p>
+                    {{ field(placeholder=field.label.text,  class_="uk-input uk-form-width-medium") }}
+                </p>
 
-            <p>
-                {% for error in field.errors %}
-                <span class="text-danger">{{ error }}</span>
                 {% endfor %}
-                {{ field(placeholder=field.label.text,  class_="uk-input uk-form-width-medium") }}
+
+                <button class="uk-button uk-button-primary">Sign-in</button>
+            </form>
+
+            <hr class="uk-margin-medium">
+            
+            <p> <h4 style="margin-bottom: .4em;">New here?</h4>Redirect to the 
+                <a class="uk-link-primary" href="/register">register</a>
+                page to start posting!
             </p>
-
-            {% endfor %}
-
-            <button class="uk-button-primary">Login</button>
-        </form>
-    </div>
+        </div>
+    </div>    
 </div>
+
 
 {% endblock %}

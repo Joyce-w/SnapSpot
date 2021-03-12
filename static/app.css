@@ -73,5 +73,10 @@ article {
 }
 
 form {
-    margin: 5%;
+    margin: 3%;
+}
+
+/* signin, register forms */
+.main_forms {
+    padding: 2em;
 }
