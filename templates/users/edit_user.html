@@ -4,7 +4,7 @@
 
 <div class="main_forms uk-container uk-container-small">
     <div class="row justify-content-md-center">
-        <h1>Edit User route</h1>
+        <h1>Edit Your Account</h1>
         <form action="/users/{{g.user.id}}/edit" method="POST">
             {{ form.hidden_tag() }}
 
@@ -34,13 +34,17 @@
             </div>
 
 
-            <button class="uk-button uk-button-default">Make Changes</button>
+            <button class="uk-button uk-button-default uk-text-success">Make Changes</button>
         </form>
         
+        <hr>
+        <h3>Delete Account</h3>
+        <p>You are welcome to delete your account but keep in mind everything associated will be deleted too!</p>
         <form action="/users/{{g.user.id}}/delete" method="POST">
-            <button class="uk-button uk-button-danger">Delete Account</button>
+            <button class="uk-button uk-text-danger">Delete Account</button>
         </form>
     </div>
 </div>
+
 
 {% endblock %}
