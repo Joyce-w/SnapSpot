@@ -8,9 +8,9 @@ var coordinates = document.getElementById('coordinates');
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [0, 0],
+    center: [-1.527581244588987 , 43.130288226235024], //[lng, lat] format
     zoom: 2,
-    maxZoom: 1.42,
+    minZoom: 1.39
 });
 
 //make popup variable with button embedded
@@ -21,7 +21,7 @@ let popup = new mapboxgl.Popup({ offset: 25 }) // add popups
 var marker = new mapboxgl.Marker({
         draggable: true
     })
-    .setLngLat([0, 0])
+    .setLngLat([8.301137874032406 , 47.35344426456044]) //[lng, lat] format
     .setPopup(popup)
     .addTo(map);
 
@@ -31,10 +31,8 @@ marker.on('dragend', onDragEnd);
 //display coordinates depending on marker location on canvas
 function onDragEnd() { 
     var lngLat = marker.getLngLat();
-    coordinates.style.display = 'block';
-    coordinates.innerHTML =
-    'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
     lng = lngLat.lng
+    lng = adjustLng(lng)
     lat = lngLat.lat
 
     // display coordinates on form side
@@ -55,3 +53,16 @@ map.on('load', function () {
     });
 })
 
+
+
+// adjust 0-360 coords to 180 to -180
+function adjustLng(long) {
+    if (long > 180) {
+        long = long - 360
+        return long
+    }
+    else if (long < -180) {
+        long = long + 360
+    }
+    return(long)
+}

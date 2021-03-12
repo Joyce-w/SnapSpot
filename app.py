@@ -119,7 +119,7 @@ def explore():
             [-118.0, 32.9446],
             [-51.1661, -71.0],
             [21.1661, -61.0],
-            [274.227889, -5.2264]
+            [102.35651371624147, 36.88396914522427]
     ]
 
     return render_template('map.html',token=token , point=point)
@@ -146,6 +146,9 @@ def new_post():
         image = form.image.data
         description = form.description.data
         location = request.form['coords']
+
+        #return coordinates [lng, lat] format for db storage
+        pdb.set_trace()
         user=g.user.id
 
         new_post = Post(title=title, image=image, description=description, location=location, user_id=user)
