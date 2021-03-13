@@ -18,6 +18,7 @@ Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
 future==0.18.2
 geographiclib==1.50
+gunicorn==20.0.4
 idna==2.10
 ipython==7.21.0
 ipython-genutils==0.2.0
