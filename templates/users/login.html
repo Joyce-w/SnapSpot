@@ -5,12 +5,17 @@
 
     <!-- error message -->
 
-    {% for msg in get_flashed_messages() %}    
-    <div class="uk-alert-danger" uk-alert>
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, msg in messages %}
+    <div class="uk-alert-{{category}}" uk-alert>
         <a class="uk-alert-close" uk-close></a>
         <p>{{msg}}</p>
     </div>
     {% endfor %}
+    {% endif %}
+    {% endwith %}
 
 <div class="main_forms uk-container uk-container-small">
     <div class="row justify-content-md-center">

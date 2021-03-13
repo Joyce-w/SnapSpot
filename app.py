@@ -71,7 +71,8 @@ def signup():
                             caption=form.caption.data)
 
         db.session.commit()
-        return redirect("/")
+        flash("Account created! Please sign-in to get started.", 'success')
+        return redirect("/login")
 
     return render_template('/users/signup.html', form=form)
 
@@ -90,12 +91,10 @@ def login():
         user = User.authenticate(username, pwd)
         
         if user:
-            flash('Welcome back!')
             login_user(user)
             return redirect("/")
         else:
-            print("********")
-            print("Login failed")
+            flash("Username or password is incorrect!",'danger')
 
 
 
@@ -152,6 +151,7 @@ def new_post():
         lat = float(request.form['coord_lat'])
         lng = float(request.form['coord_lng'])
         location = [lng, lat]
+
         
         user=g.user.id
 

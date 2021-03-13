@@ -45,6 +45,8 @@ class User(UserMixin, db.Model):
         """returns users id"""
         return self.id
 
+        
+
     # references
     posts = db.relationship('Post', backref='users')
 
