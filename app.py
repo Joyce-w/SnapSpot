@@ -115,9 +115,9 @@ def explore():
 
     token = MAPBOX_TOKEN
 
-    point = [ [post.lng, post.lat] for post in Post.query.all() ]
-
-    return render_template('map.html',token=token , point=point)
+    points = [[post.lng, post.lat] for post in Post.query.all()]
+    
+    return render_template('map.html',token=token , points=points)
 
 @app.route('/location-picker')
 @login_required
