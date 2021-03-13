@@ -114,14 +114,8 @@ def explore():
     """Load map with pinned locations"""
 
     token = MAPBOX_TOKEN
-    
-    point = [
-            [-118.1661, 33.9446],
-            [-118.0, 32.9446],
-            [-51.1661, -71.0],
-            [21.1661, -61.0],
-            [102.35651371624147, 36.88396914522427]
-    ]
+
+    point = [ [post.lng, post.lat] for post in Post.query.all() ]
 
     return render_template('map.html',token=token , point=point)
 
@@ -150,12 +144,10 @@ def new_post():
         #return coordinates [lng, lat] format for db storage 
         lat = float(request.form['coord_lat'])
         lng = float(request.form['coord_lng'])
-        location = [lng, lat]
-
         
         user=g.user.id
 
-        new_post = Post(title=title, image=image, description=description, location=location, user_id=user)
+        new_post = Post(title=title, image=image, description=description, lat=lat, lng=lng, user_id=user)
         db.session.add(new_post)
         db.session.commit()
         return redirect(f"/users/{g.user.username}") 

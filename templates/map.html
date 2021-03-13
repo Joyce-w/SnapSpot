@@ -26,9 +26,10 @@
                     mapboxgl.accessToken = '{{token|safe}}'
                     var map = new mapboxgl.Map({
                     container: 'map', // container ID
-                    style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
-                    center: [-118.1661, 33.9446], // starting position [lng, lat]
-                    zoom: 8 // starting zoom
+                    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                    center: [-1.527581244588987 , 43.130288226235024], // starting position [lng, lat]
+                    zoom: 2,// starting zoom
+                    minZoom: 1.39 
                     });
 
                     //Creates a search with geocoding
@@ -42,6 +43,7 @@
 
                     // testing py data
                     let coordinates = {{ point }}
+
 
                     console.log(coordinates)
                     function get_markers(arr){

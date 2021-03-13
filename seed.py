@@ -49,7 +49,16 @@ db.session.commit()
 
 # load posts
 
-# Hawaii stuff
-# https: // images.unsplash.com / photo - 1505852679233 - d9fd70aff56d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
 
-# https://images.unsplash.com/photo-1545048984-76f238de07f6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1269&q=80
+p1 = Post(title='Guadalajara', image='https://images.unsplash.com/photo-1601109471554-7429b4103cba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80', description='description', lat=20.662930933675014, lng=-103.36582497984853, user_id=2)
+
+p2 = Post(title='Svalbard', image='https://images.unsplash.com/photo-1569097269234-dd5253cf3294?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80', description='description', lat=131.7065585989509, lng= 17.374085917205093, user_id=3)
+
+p3 = Post(title='Brazill', image='https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80', description='description', lat=5.723303102531631 ,lng= -37.0220022548819, user_id=2)
+
+
+db.session.add(p1)
+db.session.add(p2)
+db.session.add(p3)
+
+db.session.commit()

@@ -45,8 +45,6 @@ class User(UserMixin, db.Model):
         """returns users id"""
         return self.id
 
-        
-
     # references
     posts = db.relationship('Post', backref='users')
 
@@ -85,7 +83,7 @@ class Post(db.Model):
 
     def __repr__(self):
         p=self
-        return f"<Post id={p.id}, location={p.location}, image={p.image}, description={p.description}, user_id={p.user_id}>"
+        return f"<Post id={p.id}, lat={p.lat}, lng={p.lng}, image={p.image}, description={p.description}, user_id={p.user_id}>"
    
     id = db.Column(db.Integer,
                     primary_key = True,
@@ -94,7 +92,10 @@ class Post(db.Model):
     title = db.Column(db.String(),
                     nullable=False)
 
-    location = db.Column(db.String(),
+    lat = db.Column(db.Float(),
+                    nullable=False)
+
+    lng = db.Column(db.Float(),
                     nullable=False)
     
     image = db.Column(db.String())
