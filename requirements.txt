@@ -20,6 +20,8 @@ future==0.18.2
 geographiclib==1.50
 gunicorn==20.0.4
 idna==2.10
+ipython==7.21.0
+ipython-genutils==0.2.0
 iso3166==1.0.1
 itsdangerous==1.1.0
 jedi==0.18.0

@@ -100,7 +100,7 @@ class Post(db.Model):
     
     image = db.Column(db.String())
     
-    description = db.Column(db.String(200))
+    description = db.Column(db.String())
 
     user_id = db.Column(db.Integer,
                 db.ForeignKey('users.id'))
