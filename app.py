@@ -45,12 +45,13 @@ def g_user():
 def homepage():
     """Show homepage"""
 
-    # //sort datetime
-    post = Post.query.limit(4).all()
-    time = Post.query.filter(extract('month', Post.created_dt).all()
+    # Display random pics for silder 
+    post = Post.query.limit(6).all()
 
-    pdb.set_trace()
-    return render_template('homepage.html',post=post)
+    # Display recent posts from db
+    recent_posts = Post.query.order_by(Post.created_dt.desc()).limit(4).all()
+
+    return render_template('homepage.html',post=post, recent=recent_posts)
 
 # flask-login stuff
 # get user object
