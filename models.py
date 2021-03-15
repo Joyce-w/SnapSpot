@@ -102,5 +102,7 @@ class Post(db.Model):
     
     description = db.Column(db.String())
 
+    created_dt = db.Column(db.DateTime())
+
     user_id = db.Column(db.Integer,
                 db.ForeignKey('users.id'))

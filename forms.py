@@ -22,4 +22,3 @@ class NewPost(FlaskForm):
     title = StringField("Post Title", validators=[DataRequired()])
     image = StringField("Image URL") 
     description = TextAreaField("Short Description", validators=[DataRequired()])
-

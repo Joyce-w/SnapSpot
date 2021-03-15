@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json, g
-import requests
-import pdb
+import requests, pdb
+from datetime import datetime
+
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
@@ -44,8 +45,11 @@ def g_user():
 def homepage():
     """Show homepage"""
 
+    # //sort datetime
     post = Post.query.limit(4).all()
+    time = Post.query.filter(extract('month', Post.created_dt).all()
 
+    pdb.set_trace()
     return render_template('homepage.html',post=post)
 
 # flask-login stuff
@@ -82,6 +86,10 @@ def login():
     
     form = UserLogin()
 
+    if g.user:
+        flash("You have been automatically logged-out. Please login now!")
+        return redirect("/logout")
+        
     if form.validate_on_submit():
         # signup user with User classmethod
         username = form.username.data
@@ -106,8 +114,6 @@ def logout():
     """logout current user"""
     logout_user()
     return redirect('/')
-
-
 
 @app.route('/explore')
 def explore():
@@ -140,6 +146,7 @@ def new_post():
         title = form.title.data
         image = form.image.data
         description = form.description.data
+        time =  datetime.now()
 
         #return coordinates [lng, lat] format for db storage 
         lat = float(request.form['coord_lat'])
@@ -147,7 +154,7 @@ def new_post():
         
         user=g.user.id
 
-        new_post = Post(title=title, image=image, description=description, lat=lat, lng=lng, user_id=user)
+        new_post = Post(title=title, image=image, description=description, lat=lat, lng=lng, created_dt=time, user_id=user)
         db.session.add(new_post)
         db.session.commit()
         return redirect(f"/users/{g.user.username}") 
