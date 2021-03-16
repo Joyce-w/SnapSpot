@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-
         <!-- map div for mapBox -->
         <div id='mapDiv'>
             <div id='map' style=' width: 100vw; height: 91.7vh;'>
@@ -42,24 +41,24 @@
                     );
 
                     // testing py data
-                    let coordinates = {{ points }}
+                    var parsed = JSON.parse('{{ points | tojson}}');
+                    console.log(parsed)
 
-
-                    console.log(coordinates)
                     function get_markers(arr){
-                        for(let coord of arr){
-                        console.log(coord)
-
+                        for(let p in arr){
+                        
+                        let title = arr[p]['title']
+                        let id = arr[p]['id']
                         // adds marker at set location
                         var marker = new mapboxgl.Marker()
-                        .setLngLat(coord)
+                        .setLngLat(arr[p]['coords'])
                         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                        .setHTML('<button><a>Post Info</a></button>'))
+                        .setHTML(`<a href="/post/${id}">${title}</a>`))
                         .addTo(map);
                         }
                     }
 
-                    get_markers(coordinates)
+                    get_markers(parsed)
 
                 </script>
             </div>            

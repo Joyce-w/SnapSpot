@@ -17,8 +17,10 @@
             <div class="uk-align-center">
                 <img data-src="{{post.image}}" height="50vw" uk-img>
                     <div class="uk-width-expand">
-                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset"
-                                href="/users/{{post.users.username}}">{{post.users.username}}</a>
+                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-heading"
+                                href="/users/{{post.users.username}}">{{post.users.username}}</a> |
+                                {{post.place_name}}
+
                         </h4>
                         <!-- Display date post was created -->
                         <span>{{post.created_dt.strftime("%A, %B %d %Y | %X")}}</span>

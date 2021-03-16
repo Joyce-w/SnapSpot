@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
+from sqlalchemy import func
+
 # initalize SQLA 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -48,7 +50,7 @@ class User(UserMixin, db.Model):
 
     # references
     posts = db.relationship('Post', backref='users')
-
+    user_favs = db.relationship('Favorite', backref='users')
 
     @classmethod
     def signup(cls, display_name, username, password, area, caption):
@@ -105,8 +107,13 @@ class Post(db.Model):
 
     created_dt = db.Column(db.DateTime())
 
+    place_name = db.Column(db.String())
+
     user_id = db.Column(db.Integer,
                 db.ForeignKey('users.id'))
+
+    # references
+    fav_post = db.relationship('Favorite', backref='posts')
 
 class Favorite(db.Model):
     """Tracking favorites between users"""
@@ -115,7 +122,7 @@ class Favorite(db.Model):
 
     def __repr__(self):
         f=self
-        return f"<Favorite id={p.id}, post_id={f.post_id}, user={f.user_id}>"
+        return f"<Favorite id={f.id}, post_id={f.post_id}, user={f.user_id}>"
    
 
     id = db.Column(db.Integer,
@@ -123,8 +130,10 @@ class Favorite(db.Model):
                     autoincrement=True)
 
     post_id = db.Column(db.Integer,
-                    db.ForeignKey('posts.id', ondelete='cascade'))
+                    db.ForeignKey('posts.id', ondelete='cascade'),
+                    primary_key=True)
 
     user_id = db.Column(db.Integer,
-                    db.ForeignKey('users.id', ondelete='cascade'))
+                    db.ForeignKey('users.id', ondelete='cascade'),
+                    primary_key=True)
 

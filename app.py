@@ -1,12 +1,12 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json, g
 import requests, pdb
 from datetime import datetime
-
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post, Favorite
 from forms import UserSignup, UserLogin, NewPost
 from secrets import MAPBOX_TOKEN
+from sqlalchemy import func
 
 
 CURR_USER = "curr_user"
@@ -46,11 +46,13 @@ def homepage():
     """Show homepage"""
 
     # Display random pics for silder 
-    post = Post.query.limit(6).all()
+    post = Post.query.limit(3).all()
 
     # Display recent posts from db
-    recent_posts = Post.query.order_by(Post.created_dt.asc()).limit(4).all()
+    recent_posts = Post.query.order_by(Post.created_dt.desc()).limit(3).all()
 
+    # # display trending posts
+    # Use favorites to count top 
     return render_template('homepage.html',post=post, recent=recent_posts)
 
 # flask-login stuff
@@ -105,8 +107,6 @@ def login():
         else:
             flash("Username or password is incorrect!",'danger')
 
-
-
     return render_template('/users/login.html', form=form)
 
 @app.route('/logout')
@@ -122,8 +122,11 @@ def explore():
 
     token = MAPBOX_TOKEN
 
-    points = [[post.lng, post.lat] for post in Post.query.all()]
+    post = Post.query.all()
     
+    # dict to parse on tempalte and display corresponding info
+    points = [{'id': p.id, 'coords':[p.lng, p.lat], "title": p.title} for p in post]
+
     return render_template('map.html',token=token , points=points)
 
 @app.route('/location-picker')
@@ -152,10 +155,17 @@ def new_post():
         #return coordinates [lng, lat] format for db storage 
         lat = float(request.form['coord_lat'])
         lng = float(request.form['coord_lng'])
-        
+
+        # get location name
+        location_url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{lng},{lat}.json?access_token={MAPBOX_TOKEN}"
+
+        res = requests.get(location_url).json()
+        loc = res['features'][0]['place_name']
+
+
         user=g.user.id
 
-        new_post = Post(title=title, image=image, description=description, lat=lat, lng=lng, created_dt=time, user_id=user)
+        new_post = Post(title=title, image=image, description=description, lat=lat, lng=lng, created_dt=time, place_name=loc, user_id=user)
         db.session.add(new_post)
         db.session.commit()
         return redirect(f"/users/{g.user.username}") 

@@ -47,18 +47,23 @@ db.session.add(u4)
 
 db.session.commit()
 
-# load posts
 
-
-p1 = Post(title='Guadalajara', image='https://images.unsplash.com/photo-1601109471554-7429b4103cba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80', description='description', lat=20.7065585989509, lng=-103.36582497984853, user_id=2)
-
-p2 = Post(title='Svalbard', image='https://images.unsplash.com/photo-1569097269234-dd5253cf3294?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80', description='description', lat=78.79872466392445, lng= 17.29448838441985, user_id=3)
-
-p3 = Post(title='Brazill', image='https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80', description='description', lat=-8.51713144204551 ,lng= -42.16729206114363, user_id=2)
-
-
+# post seeds
+p1 = Post(title="wow", image="https://cdn.getyourguide.com/img/location/5c9f29710b6f9.jpeg/88.jpg", description="test tes test", lat=45.51908164248076, lng=70.01538750541044, created_dt="2021-03-16 10:45:53.875247", place_name="Hawaii", user_id=1)
+      
+p2 = Post(title="HELLO", image="https://www.usnews.com/dims4/USNEWS/f39e4a7/2147483647/thumbnail/640x420/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2Fff%2F6d%2Fabb5206e42b4932cf58355abad4b%2F1-intro-iguazu-falls.jpg", description="I DONT HAVE ONE", lat=43.45016050294154, lng=36.88062188041016, created_dt="2021-03-15 10:45:53.875247", place_name="Nevada", user_id=1)
+      
+p3 = Post(title="TESTING1", image="https://previews.123rf.com/images/carloscastilla/carloscastilla1806/carloscastilla180600098/103664285-nature-scenic-seascape-in-canary-island-travel-adventures-landscape-tenerife-island-scenery-.jpg", description="lorem ipsum blah blah blah", lat=39.50110889948181, lng=20.01538750541044, created_dt="2021-03-10 10:45:53.875247",place_name="Kyunhla, Sagaing, Myanmar", user_id=4)
+      
+p4 = Post(title="TEST2", image="https://www.10wallpaper.com/wallpaper/medium/1601/Europe_Germany_Sunset_Glow-Travel_scenery_HD_Wallpaper_medium.jpg", description="lorem ipsum blah blah blah", lat=120.51908164248076, lng=32.01538750541044, created_dt="2021-03-2 10:45:53.875247", place_name="Sagaing", user_id=2)
+      
+p5 = Post(title="TESTIN3", image="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2018-07-11-at-5-10-02-pm-1531412351.png", description="lorem ipsum blah blah blah", lat=23.51908164248076, lng=95.01538750541044, created_dt="2021-03-9 10:45:53.875247", place_name="Kyunhla", user_id=3)
+      
 db.session.add(p1)
 db.session.add(p2)
 db.session.add(p3)
+db.session.add(p4)
+db.session.add(p5)
 
 db.session.commit()
+
