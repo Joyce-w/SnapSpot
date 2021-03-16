@@ -76,7 +76,16 @@ form {
     margin: 3%;
 }
 
+#favBtn{
+    margin: 0;
+}
+#favBtn button {
+    outline: none;
+}
+
 /* signin, register forms */
 .main_forms {
     padding: 2em;
 }
+
+

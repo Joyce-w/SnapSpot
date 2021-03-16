@@ -1,16 +1,38 @@
 {% extends 'base.html' %}
     {% block content %}
 
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, msg in messages %}
+        <div class="uk-alert-{{category}}" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>{{msg}}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
         <article id="postDetail" class="uk-article uk-align-center ">
             <div class="uk-align-center">
+                <img data-src="{{post.image}}" height="50vw" uk-img>
+                    <div class="uk-width-expand">
+                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset"
+                                href="/users/{{post.users.username}}">{{post.users.username}}</a>
+                        </h4>
+                        <!-- Display date post was created -->
+                        <span>{{post.created_dt.strftime("%A, %B %d %Y | %X")}}</span>
 
-                <img data-src="{{post.image}}" width="50%vw" uk-img>
-                <div class="uk-width-expand">
-                    <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset"
-                            href="/users/{{post.users.username}}">{{post.users.username}}</a>
-                    </h4>
-                </div>
 
+                        <!-- Favorite btn -->
+                        <form id="favBtn" action="/post/{{post.id}}/favorite" method="POST">
+                        {% if g.user.id in user_faved %}
+                            <button class="uk-text-warning" uk-icon="star"></button> {{user_faved | length}}
+                        {% else %}
+                            <button class="uk-text-muted" uk-icon="star"></button> {{user_faved | length}}
+                        {% endif %}
+                        </form>
+                    </div>
                 <h1 class="uk-article-title">{{post.title}}</h1>
                 <p>{{ post.description }}</p>
 
@@ -28,4 +50,7 @@
 
         </article>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="/static/favoriting_post.js"></script>
     {% endblock %}

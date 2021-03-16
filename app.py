@@ -4,7 +4,7 @@ from datetime import datetime
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, Favorite
 from forms import UserSignup, UserLogin, NewPost
 from secrets import MAPBOX_TOKEN
 
@@ -49,7 +49,11 @@ def homepage():
     post = Post.query.limit(6).all()
 
     # Display recent posts from db
+<<<<<<< HEAD
     recent_posts = Post.query.order_by(Post.created_dt.desc()).limit(4).all()
+=======
+    recent_posts = Post.query.order_by(Post.created_dt.asc()).limit(4).all()
+>>>>>>> likeBtn
 
     return render_template('homepage.html',post=post, recent=recent_posts)
 
@@ -171,7 +175,10 @@ def view_post(post_id):
 
     post = Post.query.get(post_id)
 
-    return render_template('/posts/post_detail.html', post=post)
+    post_favs = msg = Favorite.query.filter(Favorite.post_id==post_id).all()
+    user_faved = [f.user_id for f in post_favs]
+
+    return render_template('/posts/post_detail.html', post=post,user_faved=user_faved)
 
 
 @app.route('/post/<int:post_id>/edit', methods=["GET"])
@@ -273,3 +280,32 @@ def delete_user(user_id):
     else:
         flash('You do not have permission to delete this account', 'danger')
         return redirect('/users')
+
+
+# ---------Liking/unliking a post -----------
+
+@app.route("/post/<int:post_id>/favorite", methods=["GET", "POST"])
+def fav_post(post_id):
+    """Handle likes for a post"""
+
+    if g.user:
+        user = g.user.id
+
+        post_favs = msg = Favorite.query.filter(Favorite.post_id==post_id).all()
+        user_faved = [f.user_id for f in post_favs]
+
+        # check if user id is in the users that favorited the post
+        if user in user_faved:
+            msg = Favorite.query.filter(Favorite.post_id==post_id, Favorite.user_id==user).delete()
+            db.session.commit()
+        # if user has not favorited 
+        else:
+            f = Favorite(post_id=post_id, user_id=user)
+            db.session.add(f)
+            db.session.commit()
+
+        return redirect(f"/post/{post_id}")
+    # Throw warning if there is no user
+    else:
+        flash("Please login or create an account to favorite this post!", "danger")
+        return redirect(f"/post/{post_id}")
