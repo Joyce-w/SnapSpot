@@ -13,6 +13,7 @@ def connect_db(app):
 
 # MODELS GO BELOW
 class User(UserMixin, db.Model):
+    """Create user model"""
     #special dunder method to determine table name
     __tablename__ = "users"
 
@@ -78,7 +79,7 @@ class User(UserMixin, db.Model):
 
 
 class Post(db.Model):
-
+    """Detail of post created by each user"""
     __tablename__ = "posts"
 
     def __repr__(self):
@@ -106,3 +107,24 @@ class Post(db.Model):
 
     user_id = db.Column(db.Integer,
                 db.ForeignKey('users.id'))
+
+class Favorite(db.Model):
+    """Tracking favorites between users"""
+
+    __tablename__ = "favorites"
+
+    def __repr__(self):
+        f=self
+        return f"<Favorite id={p.id}, post_id={f.post_id}, user={f.user_id}>"
+   
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True)
+
+    post_id = db.Column(db.Integer,
+                    db.ForeignKey('posts.id', ondelete='cascade'))
+
+    user_id = db.Column(db.Integer,
+                    db.ForeignKey('users.id', ondelete='cascade'))
+
