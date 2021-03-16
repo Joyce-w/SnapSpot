@@ -49,12 +49,13 @@
                         
                         let title = arr[p]['title']
                         let id = arr[p]['id']
+                        let coords = arr[p]['coords']
                         // adds marker at set location
                         var marker = new mapboxgl.Marker()
-                        .setLngLat(arr[p]['coords'])
-                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                        .setHTML(`<a href="/post/${id}">${title}</a>`))
-                        .addTo(map);
+                            .setLngLat(coords)
+                            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                            .setHTML(`<a href="/post/${id}">${title}</a>`))
+                            .addTo(map);
                         }
                     }
 
