@@ -49,11 +49,7 @@ def homepage():
     post = Post.query.limit(6).all()
 
     # Display recent posts from db
-<<<<<<< HEAD
-    recent_posts = Post.query.order_by(Post.created_dt.desc()).limit(4).all()
-=======
     recent_posts = Post.query.order_by(Post.created_dt.asc()).limit(4).all()
->>>>>>> likeBtn
 
     return render_template('homepage.html',post=post, recent=recent_posts)
 
