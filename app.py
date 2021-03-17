@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template,  redirect, flash, session, json, g
 import requests, pdb
+from collections import Counter
 from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_debugtoolbar import DebugToolbarExtension
@@ -51,9 +52,20 @@ def homepage():
     # Display recent posts from db
     recent_posts = Post.query.order_by(Post.created_dt.desc()).limit(3).all()
 
-    # # display trending posts
+    # display trending posts
+    test = Favorite.query.all()
+
+    # returns all post_id for obj from query
+    arr = [p.post_id for p in test]
+    
+    # returns post_id of the most likes 
+    ids = [p[0] for p in Counter(arr).most_common(3)]
+    
+    # post_ids are returned numerically asc, order by popularity
+    top_posts = Post.query.filter(Post.id.in_(ids)).all()
+    
     # Use favorites to count top 
-    return render_template('homepage.html',post=post, recent=recent_posts)
+    return render_template('homepage.html',post=post, recent=recent_posts, top=top_posts)
 
 # flask-login stuff
 # get user object
@@ -123,7 +135,7 @@ def explore():
     token = MAPBOX_TOKEN
 
     post = Post.query.all()
-    
+
     # dict to parse on tempalte and display corresponding info
     points = [{'id': p.id, 'coords':[p.lng, p.lat], "title": p.title} for p in post]
 

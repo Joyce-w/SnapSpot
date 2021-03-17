@@ -122,13 +122,8 @@ class Favorite(db.Model):
 
     def __repr__(self):
         f=self
-        return f"<Favorite id={f.id}, post_id={f.post_id}, user={f.user_id}>"
+        return f"<Favorite post_id={f.post_id}, user={f.user_id}>"
    
-
-    id = db.Column(db.Integer,
-                    primary_key=True,
-                    autoincrement=True)
-
     post_id = db.Column(db.Integer,
                     db.ForeignKey('posts.id', ondelete='cascade'),
                     primary_key=True)

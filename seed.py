@@ -1,4 +1,4 @@
-from models import User, Post, db
+from models import User, Post, Favorite, db
 from app import app
 
 db.drop_all()
@@ -55,7 +55,7 @@ p2 = Post(title="HELLO", image="https://www.usnews.com/dims4/USNEWS/f39e4a7/2147
       
 p3 = Post(title="TESTING1", image="https://previews.123rf.com/images/carloscastilla/carloscastilla1806/carloscastilla180600098/103664285-nature-scenic-seascape-in-canary-island-travel-adventures-landscape-tenerife-island-scenery-.jpg", description="lorem ipsum blah blah blah", lat=39.50110889948181, lng=20.01538750541044, created_dt="2021-03-10 10:45:53.875247",place_name="Kyunhla, Sagaing, Myanmar", user_id=4)
       
-p4 = Post(title="TEST2", image="https://www.10wallpaper.com/wallpaper/medium/1601/Europe_Germany_Sunset_Glow-Travel_scenery_HD_Wallpaper_medium.jpg", description="lorem ipsum blah blah blah", lat=120.51908164248076, lng=32.01538750541044, created_dt="2021-03-2 10:45:53.875247", place_name="Sagaing", user_id=2)
+p4 = Post(title="TEST2", image="https://www.10wallpaper.com/wallpaper/medium/1601/Europe_Germany_Sunset_Glow-Travel_scenery_HD_Wallpaper_medium.jpg", description="lorem ipsum blah blah blah", lat=20.51908164248076, lng=32.01538750541044, created_dt="2021-03-2 10:45:53.875247", place_name="Sagaing", user_id=2)
       
 p5 = Post(title="TESTIN3", image="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2018-07-11-at-5-10-02-pm-1531412351.png", description="lorem ipsum blah blah blah", lat=23.51908164248076, lng=95.01538750541044, created_dt="2021-03-9 10:45:53.875247", place_name="Kyunhla", user_id=3)
       
@@ -67,3 +67,23 @@ db.session.add(p5)
 
 db.session.commit()
 
+# load favs
+
+f1 = Favorite(post_id=5, user_id=1)
+f2 = Favorite(post_id=5, user_id=2)
+f3 = Favorite(post_id=5, user_id=3)
+f4 = Favorite(post_id=2, user_id=4)
+f5 = Favorite(post_id=4, user_id=4)
+f6 = Favorite(post_id=2, user_id=2)
+f7 = Favorite(post_id=1, user_id=4)
+f8 = Favorite(post_id=3, user_id=3)
+
+db.session.add(f1)
+db.session.add(f2)
+db.session.add(f3)
+db.session.add(f4)
+db.session.add(f5)
+db.session.add(f6)
+db.session.add(f6)
+db.session.add(f8)
+db.session.commit()
