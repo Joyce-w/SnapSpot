@@ -218,13 +218,25 @@ def edit_post(post_id):
 
     new_title = request.form['new_title'] 
     new_desc = request.form['new_desc']
-
-    # update infor in db
-    post.title = new_title
+    
+    # Keep old info if form input is left blank on submission
+    if new_title == '':
+        new_title = post.title
+        
+    if new_desc == '':
+        new_desc = post.description
+        
+    # update info in db
+    post.title = new_title 
     post.description = new_desc
     db.session.commit()
 
-    return redirect("/users")
+    flash("Post successfully updated!", 'success')
+    # redirect back to post owner
+    post_owner = post.users
+    username = post_owner.username    
+
+    return redirect(f"/users/{username}")
 
 
 @app.route('/post/<int:post_id>/delete')
@@ -270,7 +282,6 @@ def edit_user(user_id):
         if form.validate_on_submit():
             user.username = form.username.data
             user.display_name = form.display_name.data
-            user.area = form.area.data
             user.caption = form.caption.data
             db.session.commit()
             flash('User information updated!', 'success')

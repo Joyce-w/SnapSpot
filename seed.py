@@ -7,35 +7,30 @@ db.create_all()
 # Load users
 
 
-u = User.signup(display_name='tester1',
-                    username='tester1',
+u = User.signup(display_name='Ken Bork',
+                    username='Borknator',
                     password="password",
-                    area="",
-                    caption="Hello there1")
+                    caption="Love dogs.. It's been known in the family.")
                     
-u1 = User.signup(display_name='tester2',
-                    username='tester2',
+u1 = User.signup(display_name='Samantha Meow',
+                    username='Meow321',
                     password="password",
-                    area="",
-                    caption="what to say?")
+                    caption="Please recommend next palce to visit.")
 
-u2 = User.signup(display_name='tester3',
-                    username='tester3',
+u2 = User.signup(display_name='Johnny Ribbit',
+                    username='RibbitJ',
                     password="password",
-                    area="hawaii",
-                    caption="Hello3")
-
-u3 = User.signup(display_name='tester4',
-                    username='tester4',
-                    password="password",
-                    area="alaska",
-                    caption="mahalo?!")
-
-u4 = User.signup(display_name='tester5',
-                    username='tester5',
-                    password="password",
-                    area="spain",
                     caption="")
+
+u3 = User.signup(display_name='Rebecca Quack',
+                    username='DuckGoQ',
+                    password="password",
+                    caption="Hidden spots?")
+
+u4 = User.signup(display_name='Berry Allen',
+                    username='BerryFast',
+                    password="password",
+                    caption="I'm pretty fast")
 
 
 
@@ -49,15 +44,17 @@ db.session.commit()
 
 
 # post seeds
-p1 = Post(title="wow", image="https://cdn.getyourguide.com/img/location/5c9f29710b6f9.jpeg/88.jpg", description="test tes test", lat=45.51908164248076, lng=70.01538750541044, created_dt="2021-03-16 10:45:53.875247", place_name="Hawaii", user_id=1)
+p1 = Post(title="This is SPAIN?!", image="https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", lat=38.9196, lng=-2.0507, created_dt="2021-03-16 10:45:53.875247", place_name="Spain", user_id=1)
       
-p2 = Post(title="HELLO", image="https://www.usnews.com/dims4/USNEWS/f39e4a7/2147483647/thumbnail/640x420/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2Fff%2F6d%2Fabb5206e42b4932cf58355abad4b%2F1-intro-iguazu-falls.jpg", description="I DONT HAVE ONE", lat=43.45016050294154, lng=36.88062188041016, created_dt="2021-03-15 10:45:53.875247", place_name="Nevada", user_id=1)
+p2 = Post(title="Visted mountains of Croatia", image="https://images.unsplash.com/photo-1536419996793-7a9721c1f1da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80", description="Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. Duis tristique sollicitudin nibh sit amet. Nascetur ridiculus mus mauris vitae. Laoreet id donec ultrices tincidunt arcu non sodales neque. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Quam quisque id diam vel quam. Sapien et ligula ullamcorper malesuada. Morbi tristique senectus et netus et malesuada. Dolor magna eget est lorem ipsum. Dignissim suspendisse in est ante in nibh. Tortor dignissim convallis aenean et. Nisl nunc mi ipsum faucibus vitae. Pic by Taneli Lahtinen on unsplash", lat=43.5123323, lng=17.6263991448, created_dt="2021-03-15 10:45:53.875247", place_name="Croatia", user_id=1)
       
-p3 = Post(title="TESTING1", image="https://previews.123rf.com/images/carloscastilla/carloscastilla1806/carloscastilla180600098/103664285-nature-scenic-seascape-in-canary-island-travel-adventures-landscape-tenerife-island-scenery-.jpg", description="lorem ipsum blah blah blah", lat=39.50110889948181, lng=20.01538750541044, created_dt="2021-03-10 10:45:53.875247",place_name="Kyunhla, Sagaing, Myanmar", user_id=4)
+p3 = Post(title="Koreaa life", image="https://images.unsplash.com/photo-1526199119161-4be1e3368d52?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80", description="Pic by @thoutbox, unsplash. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. Duis tristique sollicitudin nibh sit amet. Nascetur ridiculus mus mauris vitae. Laoreet id donec ultrices tincidunt arcu non sodales neque. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Quam quisque id diam vel quam. Sapien et ligula ullamcorper malesuada. Morbi tristique senectus et netus et malesuada. Dolor magna eget est lorem ipsum. Dignissim suspendisse in est ante in nibh. Tortor dignissim convallis aenean et. Nisl nunc mi ipsum faucibus vitae.", lat=38.93237997717739, lng=-106.16928880011909, created_dt="2021-03-10 10:45:53.875247",place_name="Colorado", user_id=4)
       
-p4 = Post(title="TEST2", image="https://www.10wallpaper.com/wallpaper/medium/1601/Europe_Germany_Sunset_Glow-Travel_scenery_HD_Wallpaper_medium.jpg", description="lorem ipsum blah blah blah", lat=20.51908164248076, lng=32.01538750541044, created_dt="2021-03-2 10:45:53.875247", place_name="Sagaing", user_id=2)
+p4 = Post(title="Chicagooo", image="https://images.unsplash.com/photo-1579463236360-8bb6a60c0b5f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80", description=" Pic by Jessica Fadel @ unsplash. Morbi tristique senectus et netus et malesuada. Dolor magna eget est lorem ipsum. Dignissim suspendisse in est ante in nibh. Tortor dignissim convallis aenean et. Nisl nunc mi ipsum faucibus vitae", lat=41.85838327561396, lng=-87.67452436522132, created_dt="2021-03-2 10:45:53.875247", place_name="Chicago,Illinois", user_id=2)
       
-p5 = Post(title="TESTIN3", image="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2018-07-11-at-5-10-02-pm-1531412351.png", description="lorem ipsum blah blah blah", lat=23.51908164248076, lng=95.01538750541044, created_dt="2021-03-9 10:45:53.875247", place_name="Kyunhla", user_id=3)
+p5 = Post(title="Chilhowee Mt.", image="https://images.unsplash.com/photo-1590096598321-a42e180df31d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80", description=" Pic by Mitchell Hartley @ unsplash. Laoreet id donec ultrices tincidunt arcu non sodales neque. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Quam quisque id diam vel quam. Sapien et ligula ullamcorper malesuada. Morbi tristique senectus et netus et malesuada. Dolor magna eget est lorem ipsum. Dignissim suspendisse in est ante in nibh. Tortor dignissim convallis aenean et. Nisl nunc mi ipsum faucibus vitae.", lat=35.7362657813314, lng=-86.52248546536788, created_dt="2021-03-9 10:45:53.875247", place_name="Chilhowee Mountain, Tennessee, USA", user_id=3)
+      
+p5 = Post(title="Sheeps. That is all", image="https://images.unsplash.com/photo-1501884742805-c94fc1d8985b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80", description=" Pic by Peter Hammer @ unsplash. Laoreet id donec ultrices tincidunt arcu non sodales neque. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Quam quisque id diam vel quam. Sapien et ligula ullamcorper malesuada. Morbi tristique senectus et netus et malesuada. Dolor magna eget est lorem ipsum. Dignissim suspendisse in est ante in nibh. Tortor dignissim convallis aenean et. Nisl nunc mi ipsum faucibus vitae.", lat=-44.02278276330103, lng=170.1382899504108, created_dt="2021-03-19 10:45:53.875247", place_name="Lake Tekapo, New Zealand", user_id=1)
       
 db.session.add(p1)
 db.session.add(p2)
@@ -73,7 +70,7 @@ f1 = Favorite(post_id=5, user_id=1)
 f2 = Favorite(post_id=5, user_id=2)
 f3 = Favorite(post_id=5, user_id=3)
 f4 = Favorite(post_id=2, user_id=4)
-f5 = Favorite(post_id=4, user_id=4)
+f5 = Favorite(post_id=1, user_id=4)
 f6 = Favorite(post_id=2, user_id=2)
 f7 = Favorite(post_id=1, user_id=4)
 f8 = Favorite(post_id=3, user_id=3)

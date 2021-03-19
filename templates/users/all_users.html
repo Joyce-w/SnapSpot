@@ -19,8 +19,8 @@
         <div class="uk-card uk-card-default uk-card-body uk-width-1-1@l">
             {% for user in users %}
             <h3 class="uk-card-title">
-                <a href="/users/{{user.username}}">{{user.display_name}} </a>
-                ({{user.username}})</h3>
+                <a href="/users/{{user.username}}">{{user.username}} </a>
+            </h3>
             <p>{{user.caption}}</p>
             {% endfor %}
         </div>

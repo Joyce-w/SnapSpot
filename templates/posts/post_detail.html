@@ -13,9 +13,9 @@
         {% endif %}
         {% endwith %}
 
-        <article id="postDetail" class="uk-article uk-align-center ">
+        <article id="postDetail" class="uk-article uk-align-center uk-width-1-2">
             <div class="uk-align-center">
-                <img data-src="{{post.image}}" height="50vw" uk-img>
+                <img class="uk-align-center" data-src="{{post.image}}" height="50vw" uk-img>
                     <div class="uk-width-expand">
                         <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-heading"
                                 href="/users/{{post.users.username}}">{{post.users.username}}</a> |
@@ -23,7 +23,7 @@
 
                         </h4>
                         <!-- Display date post was created -->
-                        <span>{{post.created_dt.strftime("%A, %B %d %Y | %X")}}</span>
+                        <span>{{post.created_dt.strftime("%A, %B %d, %Y ")}}</span>
 
 
                         <!-- Favorite btn -->
@@ -36,7 +36,7 @@
                         </form>
                     </div>
                 <h1 class="uk-article-title">{{post.title}}</h1>
-                <p>{{ post.description }}</p>
+                <p class="uk-align-center">{{ post.description }}</p>
 
                 {% if g.user.id == post.users.id %}
                     <a class="uk-button uk-button-primary" href="/post/{{post.id}}/edit">Edit</a>

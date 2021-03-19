@@ -37,9 +37,6 @@ class User(UserMixin, db.Model):
     
     password = db.Column(db.String(),
                     nullable=False)
-
-    area = db.Column(db.String(),
-                    nullable=False)
     
     caption = db.Column(db.Text(),
                     default='')
@@ -53,7 +50,7 @@ class User(UserMixin, db.Model):
     user_favs = db.relationship('Favorite', backref='users')
 
     @classmethod
-    def signup(cls, display_name, username, password, area, caption):
+    def signup(cls, display_name, username, password, caption):
         """Signup user and hash password"""
         
         hashed_pw = bcrypt.generate_password_hash(password).decode("utf8")
@@ -61,7 +58,6 @@ class User(UserMixin, db.Model):
         user = User(display_name=display_name,
                     username=username,
                     password=hashed_pw,
-                    area=area,
                     caption=caption)
 
         db.session.add(user)

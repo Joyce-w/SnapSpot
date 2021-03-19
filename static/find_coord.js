@@ -13,16 +13,13 @@ var map = new mapboxgl.Map({
     minZoom: 1.39
 });
 
-//make popup variable with button embedded
-let popup = new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<button class="btn">Current location</button>')
 
 //create blue marker and add to the map
 var marker = new mapboxgl.Marker({
-        draggable: true
+    draggable: true,
+    color: "#1338BE"
     })
     .setLngLat([8.301137874032406 , 47.35344426456044]) //[lng, lat] format
-    .setPopup(popup)
     .addTo(map);
 
 //displays coords when marker is finishes moving
@@ -43,16 +40,6 @@ function onDragEnd() {
     sessionStorage.setItem("coord_lat", JSON.stringify({ "lat": lat }))
     sessionStorage.setItem("coord_lng", JSON.stringify({"lng": lng }))
 }
-
-//wait for map to load, before buttons can be clicked
-//not implemented in current view yet
-map.on('load', function () {
-    //click event inside 
-    $('#map').on('click', '.btn', function() {
-        alert('test');
-    });
-})
-
 
 
 // adjust 0-360 coords to 180 to -180

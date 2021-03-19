@@ -3,6 +3,15 @@ body {
     padding: 0 !important;
 }
 
+/* homepg  */
+.homepg_section{
+    align-items: center;
+}
+
+.thumbnail_pic{
+    width: 100%;
+    border: 0.5px solid rgb(240, 240, 240);
+}
   /* mapbox map div */
 #map {
     top: 0;
@@ -87,5 +96,4 @@ form {
 .main_forms {
     padding: 2em;
 }
-
 
