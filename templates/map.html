@@ -42,19 +42,20 @@
 
                     // testing py data
                     var parsed = JSON.parse('{{ points | tojson}}');
-                    console.log(parsed)
 
                     function get_markers(arr){
                         for(let p in arr){
                         
-                        let title = arr[p]['title']
+                        let img = arr[p]['img']
                         let id = arr[p]['id']
                         let coords = arr[p]['coords']
                         // adds marker at set location
-                        var marker = new mapboxgl.Marker()
+                        var marker = new mapboxgl.Marker({
+                            color: "#9370DB"
+                            })
                             .setLngLat(coords)
                             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                            .setHTML(`<a href="/post/${id}">${title}</a>`))
+                            .setHTML(`<a href="/post/${id}"><img src=${img}></a>`))
                             .addTo(map);
                         }
                     }
@@ -64,6 +65,7 @@
                 </script>
             </div>            
         </div>
+        
 
     {% endblock %}
 

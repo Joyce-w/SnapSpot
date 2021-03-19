@@ -137,7 +137,7 @@ def explore():
     post = Post.query.all()
 
     # dict to parse on tempalte and display corresponding info
-    points = [{'id': p.id, 'coords':[p.lng, p.lat], "title": p.title} for p in post]
+    points = [{'id': p.id, 'coords':[p.lng, p.lat], "img": p.image} for p in post]
 
     return render_template('map.html',token=token , points=points)
 
