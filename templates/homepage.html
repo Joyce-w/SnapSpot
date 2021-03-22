@@ -7,10 +7,10 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, msg in messages %}
-    <div class="uk-alert-{{category}}" uk-alert>
-        <a class="uk-alert-close" uk-close></a>
-        <p class="uk-text-emphasis">{{msg}}</p>
-    </div>
+        <div class="uk-alert-{{category}}" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p class="uk-text-emphasis">{{msg}}</p>
+        </div>
     {% endfor %}
     {% endif %}
     {% endwith %}

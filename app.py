@@ -7,7 +7,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post, Favorite
 from forms import UserSignup, UserLogin, NewPost
 from secrets import MAPBOX_TOKEN
-from sqlalchemy import func
+from sqlalchemy.exc import IntegrityError
 
 
 CURR_USER = "curr_user"
@@ -82,16 +82,19 @@ def signup():
     form = UserSignup()
 
     if form.validate_on_submit():
-        # signup user with User classmethod
-        user = User.signup(display_name=form.display_name.data,
-                            username=form.username.data,
-                            password=form.password.data,
-                            caption=form.caption.data)
+        try:
+            # signup user with User classmethod
+            user = User.signup(display_name=form.display_name.data,
+                                username=form.username.data,
+                                password=form.password.data,
+                                caption=form.caption.data)
 
-        db.session.commit()
-        flash("Account created! Please sign-in to get started.", 'success')
-        return redirect("/login")
+            db.session.commit()
+            flash("Account created! Please sign-in to get started.", 'success')
+            return redirect("/login")
 
+        except IntegrityError:
+            flash("Username is already taken, try something else!", 'danger')
     return render_template('/users/signup.html', form=form)
 
 @app.route('/login', methods=["GET", "POST"])
