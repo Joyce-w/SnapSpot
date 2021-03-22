@@ -106,7 +106,7 @@ class Post(db.Model):
     place_name = db.Column(db.String())
 
     user_id = db.Column(db.Integer,
-                db.ForeignKey('users.id'))
+                db.ForeignKey('users.id', ondelete='cascade'))
 
     # references
     fav_post = db.relationship('Favorite', backref='posts')
