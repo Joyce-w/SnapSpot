@@ -3,6 +3,18 @@
 
 
     {% block slideshow%}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, msg in messages %}
+    <div class="uk-alert-{{category}}" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p class="uk-text-emphasis">{{msg}}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
 <div>
         <div uk-slider="autoplay: true; autoplay-interval: 4000">
         <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-4@ uk-grid-match">

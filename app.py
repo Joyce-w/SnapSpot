@@ -86,7 +86,6 @@ def signup():
         user = User.signup(display_name=form.display_name.data,
                             username=form.username.data,
                             password=form.password.data,
-                            area=form.area.data,
                             caption=form.caption.data)
 
         db.session.commit()
@@ -102,7 +101,7 @@ def login():
     form = UserLogin()
 
     if g.user:
-        flash("You have been automatically logged-out. Please login now!")
+        flash("You have been automatically logged-out. Please try logging in again.", "success")
         return redirect("/logout")
         
     if form.validate_on_submit():
