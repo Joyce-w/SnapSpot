@@ -6,9 +6,9 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post, Favorite
 from forms import UserSignup, UserLogin, NewPost
-from secrets import MAPBOX_TOKEN
 from sqlalchemy.exc import IntegrityError
 
+MAPBOX_TOKEN = "pk.eyJ1Ijoiam95am95am95eSIsImEiOiJja2w4YzZyM3kxcTdmMnZwZXdiNG5yczRjIn0.CDJtfCb3X8TKcTBRMPBJFA"
 
 CURR_USER = "curr_user"
 
