@@ -78,3 +78,13 @@ class UserViewsTestCase(TestCase):
             self.assertNotIn('<div class="user_btns">', html)
             self.assertNotIn('<a href="/logout">', html)
 
+    def test_users(self):
+        """Test list of users"""
+
+        with self.client as client:
+            resp = client.get("/users")
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn(f'<a href="/users/{self.user.username}">', html)
+
