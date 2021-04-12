@@ -1,6 +1,7 @@
-# Shared Sights
-- App has yet to be deployed onto Heroku. 
-- Users are able to post about sights and scenery they want to share. They are also able to read other posts from other users. Posts are pinned to a map where the relative location is shared for others to have the opportunity to visit. 
+# Spectabilis
+- Latin for "sightly", and sightly photographs you will find here! 
+- Users are able to post about sights and scenery they have visited and wish to share with others. They are also able to read other posts from other users. Posts are pinned to a map where the relative location is shared for others to have the opportunity to visit. 
+- App has yet to be deployed onto Heroku.
 
 ## Features 
 
