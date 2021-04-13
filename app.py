@@ -7,6 +7,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post, Favorite
 from forms import UserSignup, UserLogin, NewPost
 from sqlalchemy.exc import IntegrityError
+import os
 
 MAPBOX_TOKEN = "pk.eyJ1Ijoiam95am95am95eSIsImEiOiJja2w4YzZyM3kxcTdmMnZwZXdiNG5yczRjIn0.CDJtfCb3X8TKcTBRMPBJFA"
 
@@ -20,7 +21,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///shsi_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SECRET_KEY'] = "wheredoyouwanttogo0217"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'w12z8wwdxcfa')
+print(app.config['SECRET_KEY'])
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
