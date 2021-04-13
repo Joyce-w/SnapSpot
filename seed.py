@@ -1,6 +1,7 @@
 from models import User, Post, Favorite, db
 from app import app
 
+db.session.commit()
 db.drop_all()
 db.create_all()
 
