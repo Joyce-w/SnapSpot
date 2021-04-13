@@ -18,11 +18,10 @@ app = Flask(__name__)
 
 
 # specify that youre using postgres and a specific database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///shsi_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', "postgresql:///shsi_db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'w12z8wwdxcfa')
-print(app.config['SECRET_KEY'])
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
