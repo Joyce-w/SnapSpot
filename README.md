@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SnapSpot
 
 - Latin for "sightly", and sightly photographs you will find here! 
